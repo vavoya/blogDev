@@ -1,0 +1,219 @@
+
+
+.catList {
+    width: 200px;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: black solid 1px;
+    gap: 10px;
+}
+
+.catListHead {
+    width: 170px;
+    height: 80px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    border-bottom: black solid 2px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.catListHead > span{
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.catListHead > button{
+    margin-right: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    background: none;
+}
+
+.catListHead > button > div{
+    width: 30px;
+    height: 30px;
+    background: gray;
+    border-radius: 100%;
+}
+
+.catListHead > button > span{
+    color: black;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.catListBody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 100%;
+    overflow: scroll;
+}
+
+.catListBody > div {
+    width: 100%;
+    transition: background 0.3s ease-in-out;
+}
+
+.catListBody > div:hover {
+    background-color: lightgray;
+}
+
+.catListBody > div > span {
+    line-height: 38px;
+    padding-left: 20px;
+    transition: padding-left 0.3s ease-in-out;
+}
+
+.catListBody > div:hover > span {
+    padding-left: 30px;
+}
+
+
+
+.pageList {
+    width: 600px;
+    height: 750px;
+}
+
+.pageListHead {
+    width: 100%;
+    height: 130px;
+    padding: 40px 80px 0 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pageListHead > span {
+    max-width: 100%;
+    overflow: scroll;
+    font-size: 32px;
+    line-height: 46px;
+    font-weight: 500;
+}
+
+/* 스크롤바 전체 */
+.pageListHead > span::-webkit-scrollbar {
+    width: 4px; /* 스크롤바의 너비 설정 */
+    height: 1px; /* 스크롤바의 높이 설정 (가로 스크롤바) */
+}
+
+/* 스크롤바 트랙 */
+.pageListHead > span::-webkit-scrollbar-track {
+    background: transparent; /* 스크롤바 트랙의 배경색 설정 */
+}
+
+/* 스크롤바 핸들 */
+.pageListHead > span::-webkit-scrollbar-thumb {
+    background: black; /* 스크롤바 핸들의 배경색 설정 */
+    border-radius: 2px; /* 스크롤바 핸들의 모서리를 둥글게 설정 */
+}
+
+/* 스크롤바 핸들을 호버했을 때 */
+.pageListHead > span::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 호버 시 스크롤바 핸들의 배경색 변경 */
+}
+
+.pageListHead > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 50%;
+}
+
+.pageListHead > div > span {
+    line-height: 19px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.pageListHead > div > div {
+    width: 0;
+    height: 10px;
+    border: black solid 0.5px;
+}
+
+.pageListBody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    width: 100%;
+    height: 100px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: background 0.3s ease-in-out;
+}
+
+.card:hover{
+    background-color: lightgray;
+}
+
+.card > div:first-child {
+    width: 135px;
+    height: 90px;
+    background: darkseagreen;
+    border-radius: 10px;
+}
+
+.card > div:nth-child(2) {
+    margin-left: 20px;
+    flex-grow: 1; /* 가운데 자식 요소가 남은 공간을 차지 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 15px;
+}
+
+.card > div:nth-child(2) > span:first-child {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+}
+
+.card > div:nth-child(2) > span:last-child {
+    font-size: 12px;
+    line-height: 17px;
+    opacity: 0.5;
+}
+
+.card > div:last-child {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card > div:last-child > div {
+    height: 30px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card > div:last-child > div > div {
+    background: black;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+}
+
+.card > div:last-child > div > span {
+    font-size: 12px;
+    line-height: 17px;
+}

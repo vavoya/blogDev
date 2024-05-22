@@ -1,0 +1,108 @@
+{
+  "title": "Nextjs 13은 포기를 해야한다!",
+  "tag": [
+    "태그1",
+    "태그2",
+    "태그3"
+  ],
+  "date": "2024.05.10",
+  "type": "section",
+  "children": [
+    {
+      "type": "h2",
+      "text": "Next.js 13을 포기하는 방법"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "span",
+          "font": {
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strike": false
+          },
+          "text": "여기서는 매우 중요하니 bold를 스타일로 주겠다. "
+        },
+        {
+          "type": "span",
+          "font": {
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strike": false
+          },
+          "text": "여기서부터는 아주 평범한 내용이니 아무 스타일을 안주겠다. "
+        },
+        {
+          "type": "span",
+          "font": {
+            "bold": true,
+            "italic": true,
+            "underline": false,
+            "strike": false
+          },
+          "text": "여기서는 bold와 italic을 둘 다 주도록 하겠다."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "span",
+          "font": {
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strike": false
+          },
+          "text": "사실 장난이고 이제 제대로 알려 주겠다."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "span",
+          "font": {
+            "bold": true,
+            "italic": false,
+            "underline": true,
+            "strike": false
+          },
+          "text": "nextjs 13을 포기하는 방법을!!!!"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "span",
+          "font": {
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strike": false
+          },
+          "text": "그런건 사실 없다."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "이건 제목2"
+    },
+    {
+      "type": "h3",
+      "text": "이건 제목3"
+    },
+    {
+      "type": "h4",
+      "text": "이건 제목4"
+    }
+  ]
+}
