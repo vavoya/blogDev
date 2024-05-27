@@ -10,7 +10,7 @@ export default function Layout(props: {
     children: React.ReactNode;
     modal: React.ReactNode;
 }){
-    console.log(props.modal && true, '모달1',props)
+    console.log(props.modal && true, '모달1')
     return (
         <>
             <Header />

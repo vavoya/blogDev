@@ -11,7 +11,7 @@ export default function SideBar() {
         <nav className={styles.nav}>
             <ul className={styles.ul}>
                 <li>
-                    <Link href={`/${blogName}/category`} className={styles.link}>
+                    <Link href={`/${blogName}/category/2`} className={styles.link}>
                         <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="15" cy="15" r="14" fill="black"/>
                         </svg>

@@ -1,58 +1,15 @@
 'use client'
 
-import {Modal} from "@/app/[name]/@modal/(.)category/modal";
 import styles from "./category.module.css"
+import Link from "next/link";
+import {useEffect} from "react";
 
-export default function Test() {
-    console.log('모달?')
-
+function Page() {
 
 
 
     return (
-        <Modal>
-            <div className={styles.catList}>
-                <div className={styles.catListHead}>
-                    <span>목록</span>
-                    <button>
-                        <div />
-                        <span>이전</span>
-                    </button>
-                </div>
-                <div className={styles.catListBody}>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.pageList}>
+        <div className={styles.pageList}>
                 <div className={styles.pageListHead}>
                     <span>
                         FrontEnd/React/FrontEnd/React/FrontEnd/React/
@@ -176,9 +133,10 @@ export default function Test() {
                     </div>
                 </div>
                 <div>
-
+                    222
                 </div>
             </div>
-        </Modal>
     )
 }
+
+export default Page;
