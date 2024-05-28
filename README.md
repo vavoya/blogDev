@@ -9,3 +9,6 @@ JSON 예시, JSON 파서가 존재
 
 app/
 app router 폴더
+
+디자인 주소
+https://www.figma.com/design/xdzEknWsadw90ghAI1YJIu/Untitled?node-id=0-1&t=n0Qxv74OZWzktMkv-0
