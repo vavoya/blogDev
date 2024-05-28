@@ -1,23 +1,24 @@
 'use client'
 
-
 import {Modal} from "@/app/[name]/@modal/modal";
+import styles from "./category.module.css";
+import CatList from "./.component/catList";
+import PageList from "./.component/pageList";
+import Pagination from "./.component/pagination"
 
 export default function Layout(props: {
     children: React.ReactNode;
-    catList: React.ReactNode;
-    pageList: React.ReactNode;
 }){
 
     return (
-
-
-
         <Modal>
-            {props.catList}
-            {props.children}
+            <CatList />
+            <div className={styles.pageList}>
+                <PageList />
+                {props.children}
+                <Pagination />
+            </div>
         </Modal>
-    )
+)
 }
 
-//<Footer />

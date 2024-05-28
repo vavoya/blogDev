@@ -1,72 +1,19 @@
 'use client'
 
-import {Modal} from "@/app/[name]/@modal/modal";
 import styles from "./category.module.css"
-import Link from "next/link";
-import {useEffect} from "react";
+import {usePathname, useSearchParams} from "next/navigation";
 
-function Page() {
+function Page({pathname}: {pathname: string}) {
+    const params = useSearchParams()
     console.log('모달?')
 
+    // param과 pathname을 통해 적합한 페이지 목록을 가져옴
+    // 또한 페이지네이션 번호하고
 
 
     return (
-        <Modal>
-            <div className={styles.catList}>
-                <div className={styles.catListHead}>
-                    <Link href={'/VAVOYA/category/3'}>ddd</Link>
-                    <span>목록</span>
-                    <button>
-                        <div />
-                        <span>이전</span>
-                    </button>
-                </div>
-                <div className={styles.catListBody}>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            FrontEnd
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.pageList}>
-                <div className={styles.pageListHead}>
-                    <span>
-                        FrontEnd/React/FrontEnd/React/FrontEnd/React/
-                    </span>
-                    <div>
-                        <span>27개의 글</span>
-                        <div/>
-                        <span>5 페이지</span>
-                    </div>
-                </div>
-                <div className={styles.pageListBody}>
-                    <div className={styles.card}>
+        <div className={styles.pageListBody}>
+            <div className={styles.card}>
                         <div>
                         </div>
                         <div>
@@ -88,7 +35,7 @@ function Page() {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.card}>
+            <div className={styles.card}>
                         <div>
                         </div>
                         <div>
@@ -110,7 +57,7 @@ function Page() {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.card}>
+            <div className={styles.card}>
                         <div>
                         </div>
                         <div>
@@ -132,7 +79,7 @@ function Page() {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.card}>
+            <div className={styles.card}>
                         <div>
                         </div>
                         <div>
@@ -154,7 +101,7 @@ function Page() {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.card}>
+            <div className={styles.card}>
                         <div>
                         </div>
                         <div>
@@ -176,12 +123,7 @@ function Page() {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    222
-                </div>
-            </div>
-        </Modal>
+        </div>
     )
 }
 

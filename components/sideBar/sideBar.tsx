@@ -7,6 +7,11 @@ export default function SideBar() {
     const blogName = pathname.split("/")[1]
     console.log(blogName)
 
+
+    // 서버로부터 현재 페이지 post의 카테고리 경로를 알아냄
+    // 이후 카테고리 Link의 href에는 그 것으로 설정하고 쿼리 스트링도 넘겨줌
+    // 만약 post가 아니면? 그냥 /category
+
     return (
         <nav className={styles.nav}>
             <ul className={styles.ul}>

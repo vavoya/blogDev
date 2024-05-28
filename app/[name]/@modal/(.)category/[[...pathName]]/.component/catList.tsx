@@ -1,8 +1,8 @@
-import styles from "@/app/[name]/@modal/(.)category/[[...pathName]]/category.module.css";
-import {Modal} from "@/app/[name]/@modal/modal";
+import styles from "../category.module.css"
+import Link from "next/link";
 
 
-export default function Page() {
+export default function CatList() {
 
     return (
         <div className={styles.catList}>
@@ -46,5 +46,17 @@ export default function Page() {
                 </div>
             </div>
         </div>
+    )
+}
+
+function Cat() {
+    return (
+        <Link>
+            <div>
+                <span>
+                    FrontEnd
+                </span>
+            </div>
+        </Link>
     )
 }
