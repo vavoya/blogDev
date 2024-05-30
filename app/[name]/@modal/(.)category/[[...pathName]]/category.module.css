@@ -59,22 +59,22 @@
     overflow: scroll;
 }
 
-.catListBody > div {
+.catListBody > a {
     width: 100%;
     transition: background 0.3s ease-in-out;
 }
 
-.catListBody > div:hover {
+.catListBody > a:hover {
     background-color: lightgray;
 }
 
-.catListBody > div > span {
+.catListBody > a > span {
     line-height: 38px;
     padding-left: 20px;
     transition: padding-left 0.3s ease-in-out;
 }
 
-.catListBody > div:hover > span {
+.catListBody > a:hover > span {
     padding-left: 30px;
 }
 
@@ -83,6 +83,9 @@
 .pageList {
     width: 600px;
     height: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .pageListHead {
@@ -216,4 +219,63 @@
 .card > div:last-child > div > span {
     font-size: 12px;
     line-height: 17px;
+}
+
+.pageListBottom {
+    flex-grow: 1; /* 남은 공간을 채우는 요소 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.pageListBottom > span {
+    font-size: 18px;
+    line-height: 25px;
+    padding: 0 5px;
+}
+
+.pageListBottom > a {
+    width: 25px;
+    height: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 30%;
+}
+
+.pageListBottom > a:hover {
+    opacity: 1;
+}
+
+.pageListBottom > div {
+    position: absolute;
+    bottom: 50px;
+    right: 30px;
+    display: flex;
+    height: 30px;
+    border-bottom: black solid 1px;
+    padding: 0 5px;
+    gap: 10px;
+}
+
+.pageListBottom > div > input {
+    background: none;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+    width: 30px;
+}
+
+.pageListBottom > div > button {
+    cursor: pointer;
+    opacity: 30%;
+}
+
+.pageListBottom > div > button:hover {
+    opacity: 1;
 }

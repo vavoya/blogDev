@@ -1,21 +1,26 @@
 'use client'
 
 import { useEffect, useRef } from 'react';
-import {usePathname} from 'next/navigation';
+import {usePathname, useSearchParams} from 'next/navigation';
 import styles from '@/app/[name]/@modal/modal.module.css'
 
 export function Modal({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
+    const searchParams = useSearchParams()
+    const page = searchParams.get('page')
     const historyCount = useRef(0);
     const prevPathname = useRef('')
+    const prevPage = useRef('')
 
     useEffect(() => {
-        if (pathname !== prevPathname.current) {
+        if ((pathname !== prevPathname.current) || (page !== prevPage.current)) {
             prevPathname.current = pathname;
+            prevPage.current = page;
             historyCount.current += 1;
             console.log('경로이름',pathname);
+            console.log(page);
         }
-    }, [pathname]);
+    }, [pathname, page]);
 
     function onDismiss() {
         console.log(historyCount.current);
