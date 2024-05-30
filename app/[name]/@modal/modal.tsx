@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {usePathname, useSearchParams} from 'next/navigation';
-import styles from '@/app/[name]/@modal/modal.module.css'
+import styles from './modal.module.css'
 
-export function Modal({ children }: { children: React.ReactNode }) {
+export default function Modal({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const searchParams = useSearchParams()
     const page = searchParams.get('page')
@@ -17,24 +17,66 @@ export function Modal({ children }: { children: React.ReactNode }) {
             prevPathname.current = pathname;
             prevPage.current = page;
             historyCount.current += 1;
-            console.log('경로이름',pathname);
-            console.log(page);
         }
     }, [pathname, page]);
 
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, []);
+
+
+
+
     function onDismiss() {
-        console.log(historyCount.current);
         window.history.go(-historyCount.current);
     }
 
     return (
-        <div onClick={onDismiss} className={styles.modalBackdrop}>
-            <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div
+            onClick={onDismiss}
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                zIndex: 9999,
+            }}
+            className={styles.modalBackdrop}>
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className={styles.modal}
+                style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    position: 'relative',
+                    borderRadius: '10px',
+                    overflow: 'hidden',
+                    background: 'white'
+                }}>
                 {children}
-
-
-                <button className={styles.closeButton}
-                        onClick={onDismiss}>
+                <button
+                    onClick={onDismiss}
+                    className={styles.closeButton}
+                    style={{
+                        position: 'absolute',
+                        top: '20px',
+                        right: '20px',
+                        backgroundColor: 'black',
+                        borderRadius: '100%',
+                        border: 'none',
+                        fontSize: '1.5rem',
+                        cursor: 'pointer',
+                        width: '50px',
+                        height: '50px'
+                    }}>
                 </button>
             </div>
         </div>

@@ -1,3 +1,5 @@
+'use client'
+
 import styles from "../category.module.css"
 import Link from "next/link";
 import CatItem from "./catItem";
@@ -22,6 +24,20 @@ export default function CatList() {
                 </button>
             </div>
             <div className={styles.catListBody}>
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
+                <CatItem path={`${pathname}/FrontEnd`} />
                 <CatItem path={`${pathname}/FrontEnd`} />
                 <CatItem path={`${pathname}/FrontEnd`} />
                 <CatItem path={`${pathname}/FrontEnd`} />

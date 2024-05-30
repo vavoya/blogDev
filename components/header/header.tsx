@@ -9,6 +9,8 @@ export default function Header() {
     const pathname = usePathname()
     const blogName = pathname.split("/")[1]
 
+    // 경로가 바뀌면 이게 음... 이것도 최적화를 고민해보자
+
 
 
     console.log(pathname, blogName)

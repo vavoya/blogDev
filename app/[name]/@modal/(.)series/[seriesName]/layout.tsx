@@ -8,12 +8,12 @@ export default function Layout(props: {
 }){
 
     return (
-        <Modal>
+        <>
             <SeriesList />
             <PageList>
                 {props.children}
             </PageList>
-        </Modal>
+        </>
     )
 }
 

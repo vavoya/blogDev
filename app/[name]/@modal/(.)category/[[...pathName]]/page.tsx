@@ -1,11 +1,11 @@
 'use client'
 
-import styles from "./category.module.css"
+import styles from "../../.component/pageList.module.css";
 import {usePathname, useSearchParams} from "next/navigation";
+import {useEffect} from "react";
 
 function Page({pathname}: {pathname: string}) {
     const params = useSearchParams()
-    console.log('모달?')
 
     // param과 pathname을 통해 적합한 페이지 목록을 가져옴
     // 또한 페이지네이션 번호하고

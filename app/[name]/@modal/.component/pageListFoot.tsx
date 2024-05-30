@@ -1,6 +1,6 @@
 'use client'
 
-import styles from "../(.)category/[[...pathName]]/category.module.css"
+import styles from "./pageList.module.css"
 import Link from "next/link";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useRef} from "react";

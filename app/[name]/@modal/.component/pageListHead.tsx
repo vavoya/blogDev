@@ -1,6 +1,6 @@
 'use client'
 
-import styles from "../(.)category/[[...pathName]]/category.module.css"
+import styles from "./pageList.module.css"
 
 
 export default function Page({title, cardCount, pageCount}: {title: string; cardCount: number; pageCount: number}) {

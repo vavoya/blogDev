@@ -1,6 +1,6 @@
 'use client'
 
-import styles from "../(.)category/[[...pathName]]/category.module.css"
+import styles from "./pageList.module.css"
 import PageListFoot from "./pageListFoot";
 import PageListHead from "./pageListHead"
 
