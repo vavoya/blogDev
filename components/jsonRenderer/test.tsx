@@ -1,7 +1,6 @@
-'use client'
+
 
 import React, {useEffect, useRef} from "react";
-import Test from "@/components/jsonRenderer/test";
 
 /*
 tag
@@ -27,42 +26,18 @@ interface Node {
     key?: string;
 }
 
-const JsonRenderer = ({ jsonDocument, children }: {jsonDocument: Node, children: React.ReactNode}) => {
-
-    const rootRef = useRef<HTMLDivElement>(null);
-
-
-    useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'a' && (event.metaKey || event.ctrlKey)) {
-                event.preventDefault();
-                if (rootRef.current) {
-                    const range = document.createRange();
-                    range.selectNodeContents(rootRef.current);
-                    const selection = window.getSelection();
-                    selection?.removeAllRanges();
-                    selection?.addRange(range);
-                }
-            }
-        };
-
-        document.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
+export default function Test({ jsonDocument }: {jsonDocument: Node}) {
 
     return (
-        <section ref={rootRef}>
-            {children}
-        </section>
+        <>
+            {
+                jsonDocument.children?.map((node, index) => (
+                    parshing(node, index.toString())
+                ))
+            }
+        </>
     )
-    /*
-    {jsonDocument.children?.map((node, index) => (
-                parshing(node, index.toString())
-            ))}
-     */
+
 }
 
 const parshing = (node: Node, key: React.Key): React.ReactNode | null => {
@@ -120,5 +95,3 @@ const Span = ({initialNode}: {initialNode: Node}) => {
         </span>
     )
 }
-
-export default JsonRenderer

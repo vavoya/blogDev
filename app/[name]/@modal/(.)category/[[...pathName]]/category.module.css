@@ -27,7 +27,7 @@
     font-weight: 500;
 }
 
-.catListHead > button{
+.catListHead > a{
     margin-right: 5px;
     display: flex;
     justify-content: flex-end;
@@ -37,14 +37,14 @@
     background: none;
 }
 
-.catListHead > button > div{
+.catListHead > a > div{
     width: 30px;
     height: 30px;
     background: gray;
     border-radius: 100%;
 }
 
-.catListHead > button > span{
+.catListHead > a > span{
     color: black;
     font-size: 14px;
     font-weight: 500;
@@ -56,7 +56,7 @@
     flex-direction: column;
     justify-content: flex-start;
     max-width: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .catListBody > a {
@@ -84,3 +84,20 @@
     padding-left: 30px;
 }
 
+
+/* 스크롤바 전체 */
+.catListBody::-webkit-scrollbar {
+    width: 8px; /* 스크롤바의 너비 설정 */
+}
+
+/* 스크롤바 핸들 */
+.catListBody::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2); /* 스크롤바 핸들의 배경색 설정 */
+    border-radius: 4px; /* 스크롤바 핸들의 모서리를 둥글게 설정 */
+}
+
+.cardListBody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}

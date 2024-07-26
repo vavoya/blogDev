@@ -1,11 +1,16 @@
-import Image from "next/image";
-import styles from "@/app/page.module.css";
+import ProfileSection from "@/app/[name]/ProfileSection";
+import ReadMe from "@/app/[name]/PostContent";
 
 export default function BlogHome({params}: {params: string}) {
     console.log(params)
+    // 여기서 모든 기본 fetch 동작? 아니면 하위?
+
+
+
     return (
-        <main>
-            2323
-        </main>
+        <>
+            <ProfileSection params={null} />
+            <ReadMe />
+        </>
     )
 }

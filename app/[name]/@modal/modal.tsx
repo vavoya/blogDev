@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef } from 'react';
-import {usePathname, useSearchParams} from 'next/navigation';
+import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import styles from './modal.module.css'
 
 export default function Modal({ children }: { children: React.ReactNode }) {
@@ -21,17 +21,23 @@ export default function Modal({ children }: { children: React.ReactNode }) {
     }, [pathname, page]);
 
     useEffect(() => {
-        document.body.style.overflow = 'hidden';
+        const html = document.documentElement; // document.html 대신 document.documentElement 사용
+        html.style.overflow = 'hidden';
         return () => {
-            document.body.style.overflow = '';
+            html.style.overflow = '';
         };
     }, []);
 
 
-
+    const router = useRouter();
 
     function onDismiss() {
-        window.history.go(-historyCount.current);
+        if (historyCount.current > 0) {
+            window.history.go(-historyCount.current);
+        } else {
+            router.push('/VAVOYA');
+            router.refresh();
+        }
     }
 
     return (

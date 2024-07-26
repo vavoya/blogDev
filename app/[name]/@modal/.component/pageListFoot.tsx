@@ -7,7 +7,8 @@ import {useRef} from "react";
 
 export default function Page({start, end}: {start: number; end: number}) {
     const router = useRouter()
-    const params = useSearchParams();
+    const searchParams = useSearchParams();
+    const page = +searchParams.get('page');
     const pathname = usePathname();
     const findePageNum = useRef<HTMLInputElement>(null);
 
@@ -21,14 +22,14 @@ export default function Page({start, end}: {start: number; end: number}) {
 
     return (
             <div className={styles.pageListBottom}>
-                <FirstPage num={1} pathname={pathname} />
-                <PrevPage num={1} pathname={pathname} />
+                <FirstPage num={start} page={page} pathname={pathname} />
+                <PrevPage num={start} page={page} pathname={pathname} />
 
-                <span>2</span>
+                <span>{page}</span>
 
-                <NextPage num={3} pathname={pathname} />
-                <LastPage num={5} pathname={pathname} />
-                <div>
+                <NextPage num={end} page={page} pathname={pathname} />
+                <LastPage num={end} page={page} pathname={pathname} />
+                <div className={styles.paginationSearch}>
                     <input placeholder={"번호"} ref={findePageNum} />
                     <button onClick={handleClick}>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,11 +44,11 @@ export default function Page({start, end}: {start: number; end: number}) {
 }
 
 // 여기 Link들 전부 css 줘서 호버되면 뭐... opacity가 변한다거나, translation? x축 이동을 한다거나...
-function FirstPage({num = 0, pathname}: { num?: number , pathname?: string } = {}) {
+function FirstPage({num, page, pathname}: { num: number, page: number, pathname: string }) {
 
-    if (num === 0) {
+    if (num === page) {
         return (
-            <div style={{width: '16px', height: '15px', backgroundColor: 'none'}}/>
+            <div className={styles.emptyBox}/>
         )
     }
 
@@ -59,13 +60,12 @@ function FirstPage({num = 0, pathname}: { num?: number , pathname?: string } = {
             </svg>
         </Link>
     )
-
 }
 
-function LastPage({num = 0, pathname}: { num?: number , pathname?: string } = {}) {
-    if (num === 0) {
+function LastPage({num, page, pathname}: { num: number, page: number, pathname: string }) {
+    if (num === page) {
         return (
-            <div style={{width: '16px', height: '15px', backgroundColor: 'none'}}/>
+            <div className={styles.emptyBox}/>
         )
     }
 
@@ -81,15 +81,15 @@ function LastPage({num = 0, pathname}: { num?: number , pathname?: string } = {}
     )
 }
 
-function PrevPage({num = 0, pathname}: { num?: number , pathname?: string } = {}) {
-    if (num === 0) {
+function PrevPage({num, page, pathname}: { num: number, page: number, pathname: string }) {
+    if (num === page) {
         return (
-            <div style={{width: '16px', height: '15px', backgroundColor: 'none'}}/>
+            <div className={styles.emptyBox}/>
         )
     }
 
     return (
-        <Link href={`${pathname}?page=${num}`}>
+        <Link href={`${pathname}?page=${page-1}`}>
             <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.5 15L0 7.5L7.5 0L8.83817 1.33817L2.67635 7.5L8.83817 13.6618L7.5 15Z" fill="black"/>
             </svg>
@@ -97,15 +97,15 @@ function PrevPage({num = 0, pathname}: { num?: number , pathname?: string } = {}
     )
 }
 
-function NextPage({num = 0, pathname}: { num?: number , pathname?: string } = {}) {
-    if (num === 0) {
+function NextPage({num, page, pathname}: { num: number, page: number, pathname: string }) {
+    if (num === page) {
         return (
-            <div style={{width: '16px', height: '15px', backgroundColor: 'none'}}/>
+            <div className={styles.emptyBox}/>
         )
     }
 
     return (
-        <Link href={`${pathname}?page=${num}`}>
+        <Link href={`${pathname}?page=${page+1}`}>
             <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.16183 7.5L0 1.33817L1.33817 0L8.83817 7.5L1.33817 15L0 13.6618L6.16183 7.5Z"
                       fill="black"/>

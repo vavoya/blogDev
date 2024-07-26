@@ -20,7 +20,7 @@ export default function Header() {
                 <ul className={styles.ul}>
                     <LPageLink href={'/vavoya/category'} text={'이전글'} />
                     <HomeLink href={'/'+blogName} text={blogName} />
-                    <RPageLink href={'/'} text={'다음글'} />
+                    <RPageLink href={'/vavoya/post/223'} text={'다음글'} />
                 </ul>
             </nav>
         </header>

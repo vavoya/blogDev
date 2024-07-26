@@ -12,7 +12,7 @@
     list-style-type: none;
 }
 
-.link {
+.button {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +24,6 @@
     transition: opacity 0.3s ease-in-out; /* opacity 변화에 애니메이션 추가 */
 }
 
-.link:hover {
+.button:hover {
     opacity: 1;
 }

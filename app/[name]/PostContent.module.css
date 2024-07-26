@@ -1,0 +1,80 @@
+.postContent {
+    /*border: 1px solid #ccc;*/
+    margin-bottom: 1.25rem;
+    width: 100%;
+    word-break: break-all;
+}
+
+.postContent h1 {
+    font-size: 2rem;
+    margin: 2em 0 0;
+    line-height: 1.4;
+}
+
+.postContent h2 {
+    font-size: 1.5rem;
+    margin: 2em 0 0;
+    line-height: 1.4;
+}
+
+.postContent h3 {
+    font-size: 1.25rem;
+    margin: 2em 0 0;
+    line-height: 1.4;
+}
+
+.postContent p {
+    font-size: 1rem;
+    margin: 1em 0;
+    line-height: 1.8
+}
+
+.postContent ul {
+    list-style-type: none;
+    font-size: 1rem;
+    margin: 1em 0;
+    padding-left: 12px;
+}
+
+.postContent ul li {
+    font-size: inherit;
+    line-height: 1.8;
+    margin: .5em 0;
+    padding-left: 12px;
+}
+
+.postContent ul li::before {
+    content: '-';
+    position: absolute;
+    margin-left: -22px;
+    margin-top: -1px;
+}
+
+.postContent blockquote {
+
+}
+
+
+/*
+span 요소들
+*/
+.postContent .highlight{
+    background-color: rgba(255, 120, 0, 0.4);
+}
+
+.postContent .bold {
+    font-weight: bold;
+}
+
+.postContent .italic {
+    font-style: italic;
+}
+
+.postContent .strikethrough {
+    text-decoration: line-through;
+}
+
+.postContent > *:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
