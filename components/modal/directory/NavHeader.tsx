@@ -16,6 +16,7 @@ export default function NavHeader({stack, setStack}: NavHeaderProps) {
                         <button onClick={() => {
                             const newStack = [...stack];
                             newStack.pop();
+                            console.log(stack, newStack)
                             setStack(newStack);
                         }}>
                             <SvgUndo/>

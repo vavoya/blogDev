@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 // interface
 import {SeriesObject} from "@/types/series.interface";
@@ -27,12 +27,17 @@ export interface ModalProps {
 export default function Modal({isModalOpen, onClose, userId, slugs, initPageNum, data, directories}: ModalProps) {
     const [ stack, setStack ] = useState<number[]>([initPageNum.seriesId ?? 0])
 
+    useEffect(() => {
+        // 모달이 열리고 닫히면 리렌더링 시키기 위해 상태 재설정
+        setStack([...stack])
+    }, [isModalOpen]);
+
     return (
         <ModalLayout
             isModalOpen={isModalOpen}
             onClose={onClose}
             NavHeader={<NavHeader />}
-            NavBody={<NavBody stack={stack} setStack={setStack} data={data} isModalOpen={isModalOpen}/>}
+            NavBody={<NavBody stack={stack} setStack={setStack} data={data}/>}
             CardSection={
             <CardSection
                 onClose={onClose}
@@ -42,8 +47,7 @@ export default function Modal({isModalOpen, onClose, userId, slugs, initPageNum,
                 postCount={stack.length > 0 ? data[stack[stack.length - 1]].postCount : 0}
                 directories={directories}
                 stack={stack}
-                initPageNum={initPageNum.pageNum}
-                isModalOpen={isModalOpen}/>}
+                initPageNum={initPageNum.pageNum}/>}
         />
     )
 }

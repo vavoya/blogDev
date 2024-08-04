@@ -6,10 +6,9 @@ interface NavBodyProps {
     data: Tags
     stack: number[]
     setStack: (newStack: number[]) => void
-    isModalOpen: boolean
 }
 
-export default function NavBody({data, stack, setStack, isModalOpen}: NavBodyProps) {
+export default function NavBody({data, stack, setStack}: NavBodyProps) {
 
     return (
         <div className={styles.modalNavBody}>
@@ -25,8 +24,7 @@ export default function NavBody({data, stack, setStack, isModalOpen}: NavBodyPro
                             setStack={setStack}
                             name={name}
                             postCount={postCount}
-                            tagId={Number(tagId)}
-                            isModalOpen={isModalOpen}/>
+                            tagId={Number(tagId)}/>
                     )
                 })
             }

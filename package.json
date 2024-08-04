@@ -1,0 +1,43 @@
+{
+  "name": "my_blog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-react": "^6.3.0",
+    "@editorjs/editorjs": "^2.29.1",
+    "@editorjs/header": "^2.8.1",
+    "@editorjs/list": "^1.9.0",
+    "@nextui-org/scroll-shadow": "^2.1.19",
+    "@tiptap/extension-highlight": "^2.3.2",
+    "@tiptap/extension-image": "^2.3.2",
+    "@tiptap/extension-placeholder": "^2.3.2",
+    "@tiptap/pm": "^2.3.2",
+    "@tiptap/react": "^2.3.2",
+    "@tiptap/starter-kit": "^2.3.2",
+    "ckeditor5-custom-build": "^0.0.6",
+    "codemirror": "^5.65.16",
+    "mobx": "^6.12.3",
+    "mobx-react-lite": "^4.0.7",
+    "mongodb": "6.7",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-codemirror2": "^8.0.0",
+    "react-dom": "^18",
+    "slate": "^0.103.0",
+    "slate-react": "^0.102.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "typescript": "^5.5.4"
+  }
+}

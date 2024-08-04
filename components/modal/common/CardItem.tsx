@@ -5,8 +5,7 @@ import MoveBackgroundAnimation from "@/components/modal/common/MoveBackgroundAni
 import {Slugs} from "@/components/sideBar/SideBar";
 import {useEffect, useRef, useState} from "react";
 
-export default function ModalCardItem({isModalOpen, slugs, href, thumbUrl, title, description, createdAt, path, onClose}: {
-    isModalOpen: boolean
+export default function ModalCardItem({slugs, href, thumbUrl, title, description, createdAt, path, onClose}: {
     slugs: Slugs
     href: string,
     thumbUrl: string
@@ -17,16 +16,11 @@ export default function ModalCardItem({isModalOpen, slugs, href, thumbUrl, title
     onClose: () => void
 }) {
     const ref = useRef<HTMLAnchorElement>(null);
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        if (ref.current) {
-            setDimensions({
-                width: ref.current.offsetWidth,
-                height: ref.current.offsetHeight
-            });
-        }
-    }, [isModalOpen]);
+        setIsMounted(true)
+    }, []);
 
     const currentHref = decodeURIComponent(`/${slugs.blogName}/${slugs.postSlug}`)
 
@@ -70,10 +64,8 @@ export default function ModalCardItem({isModalOpen, slugs, href, thumbUrl, title
                         right: 0,
                         bottom: 0,
                         backgroundColor: 'rgba(0,0,0,0.1)'
-                    }}>
-
-                    </div>
-                    : <MoveBackgroundAnimation width={dimensions.width} height={dimensions.height}/>
+                    }} />
+                    :  isMounted && <MoveBackgroundAnimation width={ref.current!.offsetWidth} height={ref.current!.offsetHeight}/>
             }
         </Link>
 

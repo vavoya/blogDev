@@ -11,24 +11,19 @@ interface NavItemProps {
     updatedAt: string
     postCount: number
     seriesId: number
-    isModalOpen: boolean
 }
 
-export default function NavItem({stack, setStack, imageUrl, name, updatedAt, postCount, seriesId, isModalOpen}: NavItemProps) {
+export default function NavItem({stack, setStack, imageUrl, name, updatedAt, postCount, seriesId}: NavItemProps) {
     const ref = useRef<HTMLButtonElement>(null);
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const [isMounted, setIsMounted] = useState<boolean>(false);
 
     useEffect(() => {
-        if (ref.current) {
-            setDimensions({
-                width: ref.current.offsetWidth,
-                height: ref.current.offsetHeight
-            });
-        }
-    }, [isModalOpen]);
+        setIsMounted(true);
+    }, []);
 
     return (
         <button
+            ref={ref}
             className={`${styles.modalNavItem2} ${stack.includes(seriesId) ? styles.modalNavItemClick : ''}`}
             onClick={() => {
                 if (stack.includes(seriesId)) {
@@ -55,7 +50,7 @@ export default function NavItem({stack, setStack, imageUrl, name, updatedAt, pos
                     {`${updatedAt} 업데이트`}
                 </time>
             </div>
-            <MoveBackgroundAnimation width={dimensions.width} height={dimensions.height}/>
+            {isMounted && <MoveBackgroundAnimation width={ref.current!.offsetWidth} height={ref.current!.offsetHeight}/>}
         </button>
     )
 }

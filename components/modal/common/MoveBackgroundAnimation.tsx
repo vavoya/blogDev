@@ -3,7 +3,6 @@ import bg from "@/public/svg/hoverEffect.svg";
 import React from "react";
 
 export default function MoveBackgroundAnimation({width, height}: {width: number, height: number}) {
-    console.log(width, height);
 
     return (
         <div className={styles.moveBackgroundAnimation}

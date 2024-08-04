@@ -7,10 +7,9 @@ interface NavBodyProps {
     data: SeriesObject
     stack: number[]
     setStack: (newStack: number[]) => void
-    isModalOpen: boolean
 }
 
-export default function SeriesNavBody({data, stack, setStack, isModalOpen}: NavBodyProps) {
+export default function SeriesNavBody({data, stack, setStack}: NavBodyProps) {
 
     return (
         <div className={styles.modalNavBody}>
@@ -31,8 +30,7 @@ export default function SeriesNavBody({data, stack, setStack, isModalOpen}: NavB
                             name={name}
                             updatedAt={updatedAt}
                             postCount={postCount}
-                            seriesId={Number(seriesId)}
-                            isModalOpen={isModalOpen}/>
+                            seriesId={Number(seriesId)}/>
                     )
                 })
             }

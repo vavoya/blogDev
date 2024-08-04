@@ -5,10 +5,9 @@ interface NavBodyProps {
     directories: Directories,
     stack: number[]
     setStack: (newStack: number[]) => void
-    isModalOpen: boolean
 }
 
-export default function NavBody({directories, stack, setStack, isModalOpen}: NavBodyProps) {
+export default function NavBody({directories, stack, setStack}: NavBodyProps) {
 
     return (
         <>
@@ -25,7 +24,7 @@ export default function NavBody({directories, stack, setStack, isModalOpen}: Nav
                                     setStack={setStack}
                                     name={name}
                                     postCount={postCount}
-                                    directoryId={directoryId} isModalOpen={isModalOpen}/>
+                                    directoryId={directoryId}/>
                             )
                         })
                         : <DirectoryModalNavItem
@@ -34,7 +33,7 @@ export default function NavBody({directories, stack, setStack, isModalOpen}: Nav
                             setStack={() => null}
                             name={"하위 폴더가 없어요"}
                             postCount={null}
-                            directoryId={0} isModalOpen={isModalOpen}/>
+                            directoryId={0}/>
                     : null
             }
         </>

@@ -11,9 +11,7 @@ export interface ModalLayoutProps {
     CardSection: React.ReactElement;
 }
 
-
 export default function ModalLayout({isModalOpen, onClose, NavHeader, NavBody, CardSection}: ModalLayoutProps) {
-
     useEffect(() => {
         if (!isModalOpen) return
 
@@ -53,7 +51,7 @@ export default function ModalLayout({isModalOpen, onClose, NavHeader, NavBody, C
                 <button
                     onClick={onClose}
                     className={styles.modalCloseButton}>
-                    <SvgClose/>
+                    <SvgClose />
                 </button>
             </ModalContainer>
         </Backdrop>

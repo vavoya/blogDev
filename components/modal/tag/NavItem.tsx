@@ -8,24 +8,19 @@ interface NavItemProps {
     name: string,
     postCount: number
     tagId: number
-    isModalOpen: boolean
 }
 
-export default function NavItem({stack, setStack, name, postCount, tagId, isModalOpen}: NavItemProps) {
+export default function NavItem({stack, setStack, name, postCount, tagId}: NavItemProps) {
     const ref = useRef<HTMLButtonElement>(null);
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const [isMounted, setIsMounted] = useState<boolean>(false);
 
     useEffect(() => {
-        if (ref.current) {
-            setDimensions({
-                width: ref.current.offsetWidth,
-                height: ref.current.offsetHeight
-            });
-        }
-    }, [isModalOpen]);
+        setIsMounted(true);
+    }, []);
 
     return (
         <button
+            ref={ref}
             className={`${styles.modalNavItem} ${stack.includes(tagId) ? styles.modalNavItemClick : ''}`}
             onClick={() => {
                 let newStack = [...stack]
@@ -42,7 +37,7 @@ export default function NavItem({stack, setStack, name, postCount, tagId, isModa
             <span>
                 {postCount}
             </span>
-            <MoveBackgroundAnimation width={dimensions.width} height={dimensions.height}/>
+            {isMounted && <MoveBackgroundAnimation width={ref.current!.offsetWidth} height={ref.current!.offsetHeight}/>}
         </button>
     )
 }

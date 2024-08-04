@@ -18,10 +18,9 @@ interface CardSectionProps {
     directories: Directories
     stack: number[]
     initPageNum: number
-    isModalOpen: boolean
 }
 
-export default function CardSection({onClose, userId, slugs, title, postCount, directories, stack, initPageNum, isModalOpen}: CardSectionProps) {
+export default function CardSection({onClose, userId, slugs, title, postCount, directories, stack, initPageNum}: CardSectionProps) {
     const [pageNum, setPageNum] = useState(initPageNum);
     const [paginatedPosts, setPaginatedPosts] = useState<PaginatedPostDocument[]>([])
     const [isLoading, setIsLoading] = useState(true);
@@ -73,7 +72,6 @@ export default function CardSection({onClose, userId, slugs, title, postCount, d
                 </span>
             </div>
             <CardBody
-                isModalOpen={isModalOpen}
                 isLoading={isLoading}
                 loadingMessage={"불러오는 중..."}
                 noPostsMessage={"해당 시리즈에 포스트가 없어요"}

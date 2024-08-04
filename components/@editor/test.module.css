@@ -1,0 +1,13 @@
+
+p .markers {
+    display: none;
+}
+
+p:focus-within .markers {
+    display: inline;
+}
+
+strong > .markers, i > .markers{
+    display: none;
+}
+

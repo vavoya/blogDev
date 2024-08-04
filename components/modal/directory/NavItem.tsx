@@ -8,21 +8,15 @@ interface NavItemProps {
     name: string,
     postCount: number | null
     directoryId: number
-    isModalOpen: boolean
 }
 
-export default function NavItem({stack, setStack, name, postCount, directoryId, isModalOpen}: NavItemProps) {
+export default function NavItem({stack, setStack, name, postCount, directoryId}: NavItemProps) {
     const ref = useRef<HTMLButtonElement>(null);
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const [isMounted, setIsMounted] = useState<boolean>(false);
 
     useEffect(() => {
-        if (ref.current) {
-            setDimensions({
-                width: ref.current.offsetWidth,
-                height: ref.current.offsetHeight
-            });
-        }
-    }, [isModalOpen]);
+        setIsMounted(true);
+    }, []);
 
     return (
         <button
@@ -39,7 +33,7 @@ export default function NavItem({stack, setStack, name, postCount, directoryId, 
             <span>
                 {postCount}
             </span>
-            <MoveBackgroundAnimation width={dimensions.width} height={dimensions.height}/>
+            {isMounted && <MoveBackgroundAnimation width={ref.current!.offsetWidth} height={ref.current!.offsetHeight}/>}
         </button>
     )
 }

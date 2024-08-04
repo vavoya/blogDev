@@ -8,7 +8,6 @@ import {Slugs} from "@/components/sideBar/SideBar";
 
 
 interface CardBodyProps {
-    isModalOpen: boolean
     isLoading: boolean;
     loadingMessage: string;
     noPostsMessage: string;
@@ -19,7 +18,7 @@ interface CardBodyProps {
     onClose: () => void
 }
 
-export default function CardBody({isModalOpen, isLoading, loadingMessage, noPostsMessage, postCount, slugs, paginatedPosts, directories, onClose }: CardBodyProps) {
+export default function CardBody({isLoading, loadingMessage, noPostsMessage, postCount, slugs, paginatedPosts, directories, onClose }: CardBodyProps) {
 
     return (
         <div className={styles.modalCardBody}>
@@ -42,7 +41,6 @@ export default function CardBody({isModalOpen, isLoading, loadingMessage, noPost
 
                             return (
                                 <ModalCardItem
-                                    isModalOpen={isModalOpen}
                                     slugs={slugs}
                                     key={href}
                                     href={href}
