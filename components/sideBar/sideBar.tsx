@@ -1,67 +1,61 @@
-'use client'
 
-import Link from 'next/link';
 import styles from "./sideBar.module.css";
-import {usePathname} from "next/navigation";
-import {useEffect, useState} from "react";
-import Modal from "@/app/[name]/@mmodal/modal";
+import {Suspense} from "react";
+import DirectoryFallBackButton from "@/components/sideBar/directory/FallBackNavButton";
+import DirectoryDataProvider from "@/components/sideBar/directory/DataProvider";
+import SeriesFallBackButton from "@/components/sideBar/series/FallBackNavButton";
+import SeriesDataProvider from "@/components/sideBar/series/DataProvider";
+import TagFallBackButton from "@/components/sideBar/tag/FallBackNavButton";
+import TagDataProvider from "@/components/sideBar/tag/DataProvider";
 
-export default function SideBar() {
-    const pathname = usePathname()
 
+export interface Slugs {
+    blogName: string
+    postSlug?: string
+}
 
-
-    // 서버로부터 현재 페이지 post의 카테고리 경로를 알아냄
-    // 이후 카테고리 Link의 href에는 그 것으로 설정하고 쿼리 스트링도 넘겨줌
-    // 만약 post가 아니면? 그냥 /category
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+export default async function SideBar({slugs, userId}: {slugs: Slugs, userId: number}) {
 
     return (
         <>
             <nav className={styles.nav}>
                 <ul className={styles.ul}>
                     <li>
-                        <button className={styles.button} onClick={openModal}>
-                            <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="15" cy="15" r="14" fill="black"/>
-                            </svg>
-                            <span>폴더</span>
-                        </button>
+                        <Suspense fallback={
+                            <DirectoryFallBackButton />
+                        }>
+                            {/* @ts-expect-error Async Server Component */}
+                            <DirectoryDataProvider slugs={slugs} userId={userId} />
+                        </Suspense>
                     </li>
                     <li>
-                        <button className={styles.button}>
-                            <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="15" cy="15" r="14" fill="black"/>
-                            </svg>
-                            <span>시리즈</span>
-                        </button>
+                        <Suspense fallback={
+                            <SeriesFallBackButton />
+                        }>
+                            {/* @ts-expect-error Async Server Component */}
+                            <SeriesDataProvider slugs={slugs} userId={userId} />
+                        </Suspense>
                     </li>
                     <li>
-                        <button className={styles.button}>
-                            <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="15" cy="15" r="14" fill="black"/>
-                            </svg>
-                            <span>태그</span>
-                        </button>
+                        <Suspense fallback={
+                            <TagFallBackButton />
+                        }>
+                            {/* @ts-expect-error Async Server Component */}
+                            <TagDataProvider slugs={slugs} userId={userId} />
+                        </Suspense>
                     </li>
                     <li>
-                        <button className={styles.button}>
-                            <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="15" cy="15" r="14" fill="black"/>
-                            </svg>
-                            <span>검색</span>
-                        </button>
+                        <Suspense fallback={
+                            <TagFallBackButton />
+                        }>
+                            {/* @ts-expect-error Async Server Component */}
+                            <TagDataProvider slugs={slugs} userId={userId} />
+                        </Suspense>
                     </li>
                 </ul>
             </nav>
-            {
-                isModalOpen
-                    ? <Modal onClose={closeModal} />
-                    : null
-            }
         </>
     )
 }
+
+

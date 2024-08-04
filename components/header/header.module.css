@@ -1,7 +1,10 @@
 
 .header {
     position: fixed;
+
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* 사파리 호환성을 위한 추가 */
+    background-color: rgba(255, 255, 255, 0.6);
     z-index: 999;
     width: 100%;
 }
@@ -10,7 +13,7 @@
     display: flex;
     padding: 0 30px;
     list-style-type: none;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 60px;
 }

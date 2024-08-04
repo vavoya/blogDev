@@ -13,14 +13,13 @@ export default function Header() {
 
 
 
-    console.log(pathname, blogName)
     return (
         <header className={styles.header}>
             <nav>
                 <ul className={styles.ul}>
-                    <LPageLink href={'/vavoya/category'} text={'이전글'} />
+                    {/*<LPageLink href={'/vavoya/category'} text={'이전글'}/>*/}
                     <HomeLink href={'/'+blogName} text={blogName} />
-                    <RPageLink href={'/vavoya/post/223'} text={'다음글'} />
+                    {/*<RPageLink href={'/vavoya/post/223'} text={'다음글'}/>*/}
                 </ul>
             </nav>
         </header>

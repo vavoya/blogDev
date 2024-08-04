@@ -1,0 +1,457 @@
+
+
+
+.backdrop {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.backdrop button{
+    cursor: pointer;
+}
+
+.modalContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+
+/*
+모달 nav
+*/
+.modalNavSection {
+    width: 200px;
+    height: calc(100vh - 90px);
+    background-color: white;
+}
+
+.modalNavHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 20px 25px;
+    height: 130px;
+}
+
+.modalNavHeader > span {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.modalNavHeader > button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    padding: 5px 10px;
+    transition: background-color 0.3s, border-radius 0.3s;
+}
+
+.modalNavHeader > button > span {
+    font-size: 0.875rem;
+}
+
+.modalNavHeader > button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.modalNavBody {
+    width: 100%;
+    height: calc(100% - 130px);
+    overflow-y: scroll;
+}
+
+.modalNavItem {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 8px 20px;
+    width: 100%;
+}
+
+.modalNavItem > img {
+    object-fit: cover;
+}
+
+.modalNavItem > span:first-child {
+    font-size: 1rem;
+    line-height: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.modalNavItem > span:nth-child(2) {
+    font-size: 0.8rem;
+    line-height: 1.5em;
+    opacity: 0.5;
+}
+
+.modalNavItem2 {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: 200px;
+}
+
+.modalNavItem2 > img {
+    object-fit: cover;
+}
+
+.modalNavItem2 > div:nth-child(2) {
+    padding: 10px 10px 6px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    -webkit-line-clamp: 2; /* 2줄로 제한 */
+}
+
+.modalNavItem2 > div:nth-child(2) > span {
+    font-size: 1rem;
+    line-height: 1.5em;
+    max-width: 100%;
+}
+
+.modalNavItem2 > div:nth-child(3) {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.modalNavItem2 > div:nth-child(3) > span {
+    font-size: 0.8rem;
+    line-height: 1.5em;
+    opacity: 0.5;
+}
+
+.modalNavItem2 > div:nth-child(3) > time {
+    font-size: 0.8rem;
+    line-height: 1.5em;
+    opacity: 0.5;
+}
+
+.moveBackgroundAnimation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: repeat-x;
+    background-size: contain;
+
+    display: none;
+}
+
+/*
+모달 card
+*/
+.modalCardSection {
+    width: 1200px;
+    height: calc(100vh - 90px);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.modalCardHeader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0 30px 25px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* 사파리 호환성을 위한 추가 */
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 2;
+}
+
+.modalCardHeader > span:first-child {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.5em;
+}
+
+.modalCardHeader > span:nth-child(2) {
+    font-size: 0.875rem;
+    line-height: 1.5em;
+    opacity: 0.5;
+}
+
+.modalCardBody {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+    padding: 130px 0 50px;
+}
+
+/* 해당 폴더에 포스트가 존재 하지 않는 경우 */
+.modalCardBody > span {
+    font-size: 1.5rem;
+    line-height: 1.5em;
+    font-weight: 300;
+    margin: auto;
+    text-align: center;
+}
+
+.modalCardItem {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.modalCardItem > *:nth-child(2) {
+    margin: 10px 10px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modalCardItem > *:nth-child(2) > * {
+    font-size: 0.75rem;
+    line-height: 1.5em;
+    opacity: 0.5;
+}
+
+.modalCardItem > *:nth-child(2) > span {
+    flex: 1;
+    overflow: hidden; /* 오버플로우를 숨김 */
+    text-overflow: ellipsis; /* 오버플로우된 텍스트를 '...'로 표시 */
+}
+
+.modalCardItem > *:nth-child(3) {
+    margin: 0 10px 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical
+}
+
+.modalCardItem > *:nth-child(3) > span{
+    font-size: 1.25rem;
+    line-height: 1.5em;
+    font-weight: 500;
+}
+
+.modalCardItem > *:nth-child(4) {
+    margin: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical
+}
+
+.modalCardItem > *:nth-child(4) > span {
+    font-size: 0.875rem;
+    line-height: 1.5em;
+    font-weight: 300;
+}
+
+.modalCardItemSkeleton {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.modalCardItemSkeleton > *:nth-child(1) {
+    width: 300px;
+    height: 200px;
+}
+
+.modalCardItemSkeleton > *:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+    height: 1.5em;
+}
+
+.modalCardItemSkeleton > *:nth-child(3) {
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+    height: 1.5em;
+    width: 200px;
+}
+
+.modalCardItemSkeleton > *:nth-child(4) {
+    font-size: 0.875rem;
+    height: 1.5em;
+    width: 100px;
+}
+
+.skeleton {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+
+
+.modalCardFooter {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* 사파리 호환성을 위한 추가 */
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.modalCardFooter  button {
+    width: 30px;
+    height: 30px;
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    transition: background-color 0.3s, border-radius 0.3s;
+}
+
+.modalCardFooter  button:hover {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modalCardFooter  button:disabled {
+    cursor: default;
+}
+
+.modalCardFooter  button:disabled:hover {
+    background: none;
+}
+
+.modalCardFooter > span {
+    padding: 0 3px;
+    font-size: 1.25rem;
+    line-height: 1.5em;
+    font-weight: 500;
+}
+
+.modalCardFooter > div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modalCardFooter > div > input {
+    width: 50px;
+    padding: 0 5px;
+    font-size: 1rem;
+    line-height: 1.5em;
+    color: black;
+    background: none;
+    border: none;
+    outline: none; /* 기본 outline 제거 */
+    box-shadow: none; /* 기본 box-shadow 제거 */
+    border-bottom: black solid 1px;
+}
+
+
+/* 모달 Item 호버 효과 */
+.modalNavItem:hover > .moveBackgroundAnimation, .modalNavItem2:hover > .moveBackgroundAnimation, .modalCardItem:hover > .moveBackgroundAnimation {
+    display: block;
+    will-change: background-position; /* 애니메이션 성능 최적화 */
+    animation: moveBackground var(--modalItem-animation-time) linear infinite;
+}
+
+.modalNavItemClick > .moveBackgroundAnimation {
+    background-image: none;
+    display: block;
+    background-color: black;
+    opacity: 0.1;
+    animation: none;
+}
+
+@keyframes moveBackground {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: var(--modalItme-svg-width) 0;
+    }
+}
+
+
+
+
+
+
+.modalCloseButton {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, border-radius 0.3s;
+}
+
+.modalCloseButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}

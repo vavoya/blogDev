@@ -90,6 +90,7 @@ body {
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-end-rgb));
+  font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, Helvetica, "Apple Color Emoji", Arial, "Segoe UI Emoji", "Segoe UI Symbol";
   /*
   background: linear-gradient(
       to bottom,
