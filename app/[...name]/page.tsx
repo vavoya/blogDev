@@ -15,7 +15,6 @@ export default function Page({params}: {params: {name: string}}) {
 
         return (
             <>
-                {/* @ts-expect-error Async Server Component */}
                 <BlogPost params={'테스트'}/>
             </>
         )
