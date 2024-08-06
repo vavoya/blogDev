@@ -21,7 +21,7 @@ export default function PaginationSearch({maxPageNum, getPaginatedPosts} : {
                     getPaginatedPosts(numericValue)
                 }
             }}>
-                <SvgSearch/>
+                <SvgSearch width={20} height={20}/>
             </button>
         </div>
     )

@@ -15,10 +15,6 @@
     user-select: none;
 }
 
-.backdrop button{
-    cursor: pointer;
-}
-
 .modalContainer {
     position: relative;
     display: flex;

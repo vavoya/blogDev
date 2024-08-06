@@ -24,6 +24,14 @@
     transition: opacity 0.3s ease-in-out; /* opacity 변화에 애니메이션 추가 */
 }
 
+.button > div {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .button:hover {
     opacity: 1;
 }

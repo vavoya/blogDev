@@ -1,32 +1,32 @@
 import {SVGProps} from "react";
 
 /**
- * viewBox="0 0 28 28"
+ * viewBox="0 0 28 22"
  */
-export default function SvgSearch({
+export default function SvgSeries({
                                       width = "28",
-                                      height = "28"
+                                      height = "22"
                                   }: SVGProps<SVGSVGElement>) {
     return (
         <svg
             width={width}  // 사용자가 전달한 width 사용
             height={height} // 사용자가 전달한 height 사용
-            viewBox="0 0 28 28"
-            fill="none"
+            viewBox="0 0 28 22"
             preserveAspectRatio="xMidYMid meet"
+            fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
-                d="M17.1577 17.1582L25.9998 26.0003"
+                d="M2 19.5601V5.69141H22.3077V19.5601H2Z"
                 stroke="black"
                 strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"/>
-            <circle
-                cx="10.8421"
-                cy="10.8421"
-                r="8.8421"
+            <path
+                d="M4.76904 2H25.9998V16.3077"
                 stroke="black"
-                strokeWidth="3"/>
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"/>
         </svg>
     );
 }
