@@ -24,7 +24,6 @@ export default async function SideBar({slugs, userId}: {slugs: Slugs, userId: nu
                         <Suspense fallback={
                             <DirectoryFallBackButton />
                         }>
-                            {/* @ts-expect-error Async Server Component */}
                             <DirectoryDataProvider slugs={slugs} userId={userId} />
                         </Suspense>
                     </li>
@@ -32,7 +31,6 @@ export default async function SideBar({slugs, userId}: {slugs: Slugs, userId: nu
                         <Suspense fallback={
                             <SeriesFallBackButton />
                         }>
-                            {/* @ts-expect-error Async Server Component */}
                             <SeriesDataProvider slugs={slugs} userId={userId} />
                         </Suspense>
                     </li>
@@ -40,7 +38,6 @@ export default async function SideBar({slugs, userId}: {slugs: Slugs, userId: nu
                         <Suspense fallback={
                             <TagFallBackButton />
                         }>
-                            {/* @ts-expect-error Async Server Component */}
                             <TagDataProvider slugs={slugs} userId={userId} />
                         </Suspense>
                     </li>
@@ -48,7 +45,6 @@ export default async function SideBar({slugs, userId}: {slugs: Slugs, userId: nu
                         <Suspense fallback={
                             <TagFallBackButton />
                         }>
-                            {/* @ts-expect-error Async Server Component */}
                             <TagDataProvider slugs={slugs} userId={userId} />
                         </Suspense>
                     </li>
