@@ -7,11 +7,17 @@ export default function Page({params}: {params: {name: string}}) {
 
     if (blogName && !postSlug) {
         return (
-            <BlogHome />
+            <>
+                <BlogHome />
+            </>
         )
     } else if (blogName && postSlug) {
+
         return (
-            <BlogPost />
+            <>
+                {/* @ts-expect-error Async Server Component */}
+                <BlogPost params={'테스트'}/>
+            </>
         )
     }
 }
