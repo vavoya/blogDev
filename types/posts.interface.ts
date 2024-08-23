@@ -1,4 +1,4 @@
-// types/posts.interface.ts
+// types/posts.FetchResult.ts
 export interface Metadata {
     createdAt: string
     updatedAt: string
@@ -11,13 +11,14 @@ export interface Metadata {
 
 export interface PostDocument extends Document {
     _id: string;
-    userId: string;
+    userId: number;
     metadata: Metadata;
     content: string;
     tags: number[];
     title: string;
     tagIds: number[]
     seriesId: number
+    seriesOrder: number
     directoryId: number;
     status: 'published' | 'draft' | 'archived';
     slug: string;

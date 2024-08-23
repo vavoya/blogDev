@@ -1,5 +1,5 @@
 import {Directories} from "@/types/directories.interface";
-import DirectoryModalNavItem from "@/components/modal/directory/NavItem";
+import NavItem from "@/components/modal/common/NavItem";
 
 interface NavBodyProps {
     directories: Directories,
@@ -9,31 +9,34 @@ interface NavBodyProps {
 
 export default function NavBody({directories, stack, setStack}: NavBodyProps) {
 
+
+
     return (
         <>
             {
                 stack.length > 0
                     ? directories[stack[stack.length - 1]].children.length > 0
-                        ? directories[stack[stack.length - 1]].children.map((directoryId: number) => {
+                        ? directories[stack[stack.length - 1]].children.map((directoryId: number, index: number ) => {
                             const name = directories[directoryId].name
                             const postCount = directories[directoryId].postCount
                             return (
-                                <DirectoryModalNavItem
+                                <NavItem
                                     key={directoryId}
-                                    stack={stack}
-                                    setStack={setStack}
                                     name={name}
                                     postCount={postCount}
-                                    directoryId={directoryId}/>
+                                    onClick={e => {
+                                        e.preventDefault()
+                                        const newStack = [...stack]
+                                        newStack.push(directoryId)
+                                        setStack(newStack)
+                                    }}/>
                             )
                         })
-                        : <DirectoryModalNavItem
+                        : <NavItem
                             key={-1}
-                            stack={stack}
-                            setStack={() => null}
                             name={"하위 폴더가 없어요"}
                             postCount={null}
-                            directoryId={0}/>
+                            onClick={e => null}/>
                     : null
             }
         </>

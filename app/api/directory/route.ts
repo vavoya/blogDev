@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {GetDirectoriesDocument, getDirectoriesByUserId} from "@/services/getDirectories/byUserId";
+import {DirectoriesWithoutId, getByUserId} from "@/services/directories/getByUserId";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
 
     // db쿼리 시작
     try {
-        const directories: GetDirectoriesDocument | null = await getDirectoriesByUserId({ userId });
+        const directories: DirectoriesWithoutId | null = await getByUserId({ userId });
         return NextResponse.json(
             { data: directories },
             {
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
                     'Cache-Control': 'max-age=60, s-maxage=120, stale-while-revalidate=30'
                 }});
     } catch (error) {
-        console.error('Error fetching directories:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500, headers: { 'Content-Type': 'application/json; charset=utf-8' } });
+        console.error('ErrorPage fetching directories:', error);
+        return NextResponse.json({ error: 'Internal Server ErrorPage' }, { status: 500, headers: { 'Content-Type': 'application/json; charset=utf-8' } });
     }
 }

@@ -27,9 +27,14 @@ export default function NavItem({stack, setStack, name, postCount, directoryId}:
                 newStack.push(directoryId)
                 setStack(newStack)
             }}>
-            <span>
-                {name}
-            </span>
+            <div>
+                <span>
+                    {name}
+                </span>
+                <button>
+
+                </button>
+            </div>
             <span>
                 {postCount}
             </span>

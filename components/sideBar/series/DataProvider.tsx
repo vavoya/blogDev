@@ -1,34 +1,48 @@
 'use server'
 
-import DirectoryApiResponse from "@/app/api/directory/interface";
 import {Directories} from "@/types/directories.interface";
-import InitPageNumApiResponse from "@/app/api/init-page-num-directoryId/interface";
 import {Slugs} from "../SideBar"
 import React from "react";
-import {GetInitPageNum} from "@/services/getInitPageNum/interface";
-import {NavButton} from "@/components/sideBar/series/NavButton";
-import SeriesApiResponse from "@/app/api/series/interface";
 import {SeriesObject} from "@/types/series.interface";
-
-const uri = process.env.NEXT_PUBLIC_API_BASE_URL as string;
-
+import {fetchDirectories} from "@/fetcher/server/GET/directoryFetcher";
+import {fetchSeries} from "@/fetcher/server/GET/seriesFetcher";
+import {fetchPost} from "@/fetcher/server/GET/postFetcher";
+import {fetchPageNumBySeriesId} from "@/fetcher/server/GET/pageNumFetcher";
+import {PageNum} from "@/app/api/page-num/interface";
+import FallBackButton from "@/components/sideBar/series/FallBackNavButton";
+import {FetchResult} from "@/fetcher/FetchResult";
+import {PostDocument} from "@/types/posts.interface";
+import {NavButton} from "@/components/sideBar/series/NavButton";
 
 
 export default async function DataProvider({slugs, userId}: {
     slugs: Slugs
     userId: number
 }) {
-    const directories: Directories | null = await getDirectories(userId)
-    const series: SeriesObject | null = await getSeries(userId)
-    let initPageNum: GetInitPageNum = {
-        directoryId: 0,
-        seriesId: 0,
-        pageNum: 1,
+    // 초기 모달 상태를 결정하는데 필요한 로직
+    const directories: FetchResult<Directories> = await fetchDirectories(userId)
+    const series: FetchResult<SeriesObject> = await fetchSeries(userId)
+    if (directories.data === null || series.data === null) {
+        return (
+            <FallBackButton />
+        )
     }
+
+
+    let initPageNum = 1
+    let initSeriesId = null
+
+
     if (slugs.postSlug) {
-        const initData = await getInitPageNumOfSeriesId(userId, slugs.postSlug)
-        if (initData?.directoryId) initPageNum.directoryId = initData.directoryId
-        if (initData?.pageNum) initPageNum.pageNum = initData.pageNum
+        const post: FetchResult<PostDocument> =  await fetchPost(userId, slugs.postSlug)
+        if (post.data !== null) {
+            initSeriesId = post.data.seriesId
+            const data: FetchResult<PageNum> = await fetchPageNumBySeriesId(userId, initSeriesId, slugs.postSlug)
+            if (data.data !== null) {
+                initPageNum = data.data.pageNum
+            }
+        }
+
     }
 
 
@@ -37,37 +51,8 @@ export default async function DataProvider({slugs, userId}: {
             userId={userId}
             slugs={slugs}
             initPageNum={initPageNum}
-            data={series as SeriesObject}
-            directories={directories as Directories} />
+            initSeriesId={initSeriesId}
+            data={series.data}
+            directories={directories.data} />
     )
-}
-
-
-
-const getDirectories = async (userId: number) => {
-    const response = await fetch(`${uri}/api/directory?userId=${userId}`, {
-        next: {revalidate: 10, tags: [`${userId}/directory`]}
-    });
-    const result: DirectoryApiResponse = await response.json();
-
-    return result.data?.directories ?? null;
-}
-
-const getSeries = async (userId: number) => {
-    const response = await fetch(`${uri}/api/series?userId=${userId}`, {
-        next: {revalidate: 10, tags: [`${userId}/series`]}
-    });
-    const result: SeriesApiResponse = await response.json();
-
-    return result.data?.series ?? null;
-}
-
-
-const getInitPageNumOfSeriesId = async (userId: number, slug: string) => {
-    const response = await fetch(`${uri}/api/init-page-num-seriesId?userId=${userId}&slug=${slug}`, {
-        next: {revalidate: 10, tags: [`${userId}/series`]}
-    })
-    const result: InitPageNumApiResponse = await response.json();
-
-    return result.data ?? null
 }

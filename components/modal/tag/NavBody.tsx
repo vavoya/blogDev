@@ -1,6 +1,5 @@
 import {Tags} from "@/types/tags.interface";
-import styles from "@/components/modal/common/modal.module.css";
-import TagModalNavItem from "@/components/modal/tag/NavItem";
+import NavItem from "@/components/modal/common/NavItem";
 
 interface NavBodyProps {
     data: Tags
@@ -11,23 +10,30 @@ interface NavBodyProps {
 export default function NavBody({data, stack, setStack}: NavBodyProps) {
 
     return (
-        <div className={styles.modalNavBody}>
+        <>
             {
                 Object.keys(data).map((tagId: string) => {
                     const name = data[tagId].name
                     const postCount = data[tagId].postCount
 
                     return (
-                        <TagModalNavItem
+                        <NavItem
                             key={tagId}
-                            stack={stack}
-                            setStack={setStack}
                             name={name}
+                            isSelected={stack.includes(+tagId)}
                             postCount={postCount}
-                            tagId={Number(tagId)}/>
+                            onClick={() => {
+                                let newStack = [...stack]
+                                if (newStack.includes(+tagId)) {
+                                    newStack = newStack.filter(v => v !== +tagId)
+                                } else {
+                                    newStack.push(+tagId)
+                                }
+                                setStack(newStack)
+                            }}/>
                     )
                 })
             }
-        </div>
+        </>
     )
 }

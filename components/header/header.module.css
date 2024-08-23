@@ -1,45 +1,94 @@
 
-.header {
-    position: fixed;
 
+.container {
+    position: fixed;
+    z-index: 999;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px); /* 사파리 호환성을 위한 추가 */
-    background-color: rgba(255, 255, 255, 0.6);
-    z-index: 999;
+    background-color: rgba(var(--background-color), 0.6);
     width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
 }
 
-.ul {
+.header {
+    position: relative;
+    width: 100%;
     display: flex;
-    padding: 0 30px;
-    list-style-type: none;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
     height: 60px;
 }
 
-.link {
-    display: inline-flex;
-    justify-content: space-between;
+.logo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    display: flex;
     align-items: center;
-    flex-direction: row;
-    column-gap: 20px;
 }
 
-.span {
-    font-size: 14px;
-    color: gray;
+.blogHome {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
 }
 
-.spanTitle {
-    font-size: 16px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 100%;
-}
-
-.homeTitle {
-    font-size: 24px;
+.blogHome span {
+    font-size: 1.25rem;
+    line-height: 60px;
     font-weight: bold;
+}
+
+.option {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.option button, .option a {
+    padding: 5px 10px;
+    transition: background-color 0.3s, border-radius 0.3s;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5em;
+}
+
+.option button:hover, .option a:hover {
+    border-radius: 5px;
+    background-color: rgba(var(--primary-color), 0.1);
+}
+
+
+.dashboard {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+}
+
+.management, .statistics {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.current {
+    background-color: rgba(var(--primary-color), 0.1);
+}
+
+
+
+.management > span, .statistics > span {
+    font-size: 20px;
+    font-weight: 500;
 }

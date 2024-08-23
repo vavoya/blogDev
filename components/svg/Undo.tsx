@@ -19,7 +19,7 @@ export default function SvgUndo({
         >
             <path
                 d="M4.5 16H15C16.1046 16 17 15.1046 17 14V7C17 5.89543 16.1046 5 15 5H2M2 5L6.5 1M2 5L6.5 9"
-                stroke="black"
+                stroke="rgb(var(--primary-color))"
                 strokeWidth="2"
                 strokeLinecap="round"/>
         </svg>

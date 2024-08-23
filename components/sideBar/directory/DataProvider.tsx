@@ -1,32 +1,43 @@
 'use server'
 
-import DirectoryApiResponse from "@/app/api/directory/interface";
 import {Directories} from "@/types/directories.interface";
-import InitPageNumApiResponse from "@/app/api/init-page-num-directoryId/interface";
 import {Slugs} from "../SideBar"
 import React from "react";
-import {GetInitPageNum} from "@/services/getInitPageNum/interface";
+import {fetchDirectories} from "@/fetcher/server/GET/directoryFetcher";
+import {fetchPageNumByDirectoryId} from "@/fetcher/server/GET/pageNumFetcher";
+import {PageNum} from "@/app/api/page-num/interface";
+import {fetchPost} from "@/fetcher/server/GET/postFetcher";
+import FallBackButton from "@/components/sideBar/directory/FallBackNavButton";
+import {FetchResult} from "@/fetcher/FetchResult";
+import {PostDocument} from "@/types/posts.interface";
 import {NavButton} from "@/components/sideBar/directory/NavButton";
-
-const uri = process.env.NEXT_PUBLIC_API_BASE_URL as string;
-
 
 
 export default async function DataProvider({slugs, userId}: {
     slugs: Slugs
     userId: number
 }) {
-    const directories: Directories | null = await getDirectories(userId)
-    let initPageNum: GetInitPageNum = {
-        directoryId: 0,
-        seriesId: 0,
-        pageNum: 1,
+    // 초기 모달 상태를 결정하는데 필요한 로직
+    const directories: FetchResult<Directories> = await fetchDirectories(userId)
+    if (directories.data === null) {
+        return (
+            <FallBackButton />
+        )
     }
-    if (slugs.postSlug) {
-        const initData = await getInitPageNumOfDirectoryId(userId, slugs.postSlug)
 
-        if (initData?.directoryId) initPageNum.directoryId = initData.directoryId
-        if (initData?.pageNum) initPageNum.pageNum = initData.pageNum
+    let initPageNum = 1
+    let initDirectoryId = 0
+
+    if (slugs.postSlug) {
+        const post: FetchResult<PostDocument> =  await fetchPost(userId, slugs.postSlug)
+        if (post.data !== null) {
+            initDirectoryId = post.data.directoryId
+            const pageNum: FetchResult<PageNum> = await fetchPageNumByDirectoryId(userId, initDirectoryId, slugs.postSlug)
+            if (pageNum.data !== null) {
+                initPageNum = pageNum.data.pageNum
+            }
+        }
+
     }
 
     return (
@@ -34,30 +45,9 @@ export default async function DataProvider({slugs, userId}: {
             userId={userId}
             slugs={slugs}
             initPageNum={initPageNum}
-            data={directories as Directories}
-            directories={directories as Directories} />
+            initDirectoryId={initDirectoryId}
+            data={directories.data}
+            directories={directories.data} />
     )
 }
 
-
-
-
-
-const getDirectories = async (userId: number) => {
-    const response = await fetch(`${uri}/api/directory?userId=${userId}`, {
-        next: {revalidate: 10, tags: [`${userId}/directory`]}
-    });
-    const result: DirectoryApiResponse = await response.json();
-
-    return result.data?.directories ?? null;
-}
-
-
-const getInitPageNumOfDirectoryId = async (userId: number, slug: string) => {
-    const response = await fetch(`${uri}/api/init-page-num-directoryId?userId=${userId}&slug=${slug}`, {
-        next: {revalidate: 10, tags: [`${userId}/directory`]}
-    })
-    const result: InitPageNumApiResponse = await response.json();
-
-    return result.data ?? null
-}

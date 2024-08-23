@@ -1,7 +1,7 @@
-import {PostAndAdjacentPostsDocument} from "@/services/getPostAndAdjacentPosts/interface";
+import {PostDocument} from "@/types/posts.interface";
 
 interface ApiResponseSuccess {
-    data: PostAndAdjacentPostsDocument | null
+    data: PostDocument | null
     error?: never;
 }
 

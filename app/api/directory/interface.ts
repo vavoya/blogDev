@@ -1,7 +1,7 @@
-import {GetDirectoriesDocument} from "@/services/getDirectories/byUserId";
+import {DirectoriesWithoutId} from "@/services/directories/getByUserId";
 
 export interface ApiResponseSuccess {
-    data: GetDirectoriesDocument | null;
+    data: DirectoriesWithoutId | null;
     error?: never;
 }
 

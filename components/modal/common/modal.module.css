@@ -8,7 +8,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(var(--primary-color), 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,9 +29,13 @@
 모달 nav
 */
 .modalNavSection {
+    position: relative;
+    z-index: 3;
     width: 200px;
     height: calc(100vh - 90px);
-    background-color: white;
+    background-color: rgb(var(--background-color));
+    display: flex;
+    flex-direction: column;
 }
 
 .modalNavHeader {
@@ -63,13 +67,14 @@
 }
 
 .modalNavHeader > button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(var(--primary-color), 0.1);
     border-radius: 5px;
 }
 
 .modalNavBody {
+    position: relative;
     width: 100%;
-    height: calc(100% - 130px);
+    flex: 1;
     overflow-y: scroll;
 }
 
@@ -87,68 +92,6 @@
     object-fit: cover;
 }
 
-.modalNavItem > span:first-child {
-    font-size: 1rem;
-    line-height: 1.5em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-}
-
-.modalNavItem > span:nth-child(2) {
-    font-size: 0.8rem;
-    line-height: 1.5em;
-    opacity: 0.5;
-}
-
-.modalNavItem2 {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    width: 100%;
-    height: 200px;
-}
-
-.modalNavItem2 > img {
-    object-fit: cover;
-}
-
-.modalNavItem2 > div:nth-child(2) {
-    padding: 10px 10px 6px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: left;
-    -webkit-line-clamp: 2; /* 2줄로 제한 */
-}
-
-.modalNavItem2 > div:nth-child(2) > span {
-    font-size: 1rem;
-    line-height: 1.5em;
-    max-width: 100%;
-}
-
-.modalNavItem2 > div:nth-child(3) {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 10px;
-}
-
-.modalNavItem2 > div:nth-child(3) > span {
-    font-size: 0.8rem;
-    line-height: 1.5em;
-    opacity: 0.5;
-}
-
-.modalNavItem2 > div:nth-child(3) > time {
-    font-size: 0.8rem;
-    line-height: 1.5em;
-    opacity: 0.5;
-}
-
 .moveBackgroundAnimation {
     position: absolute;
     top: 0;
@@ -157,8 +100,15 @@
     bottom: 0;
     background-repeat: repeat-x;
     background-size: contain;
+    background-image: url("/svg/hoverEffect.svg");
 
     display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .moveBackgroundAnimation {
+        background-image: url("/svg/hoverEffectDarkMode.svg");
+    }
 }
 
 /*
@@ -167,7 +117,7 @@
 .modalCardSection {
     width: 1200px;
     height: calc(100vh - 90px);
-    background-color: white;
+    background-color: rgb(var(--background-color));
     display: flex;
     flex-direction: column;
     position: relative;
@@ -186,7 +136,7 @@
     padding: 0 30px 25px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px); /* 사파리 호환성을 위한 추가 */
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(var(--background-color), 0.6);
     z-index: 2;
 }
 
@@ -230,55 +180,8 @@
     overflow: hidden;
 }
 
-.modalCardItem > *:nth-child(2) {
-    margin: 10px 10px 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.modalCardItem > *:nth-child(2) > * {
-    font-size: 0.75rem;
-    line-height: 1.5em;
-    opacity: 0.5;
-}
-
-.modalCardItem > *:nth-child(2) > span {
-    flex: 1;
-    overflow: hidden; /* 오버플로우를 숨김 */
-    text-overflow: ellipsis; /* 오버플로우된 텍스트를 '...'로 표시 */
-}
-
-.modalCardItem > *:nth-child(3) {
-    margin: 0 10px 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical
-}
-
-.modalCardItem > *:nth-child(3) > span{
-    font-size: 1.25rem;
-    line-height: 1.5em;
-    font-weight: 500;
-}
-
-.modalCardItem > *:nth-child(4) {
-    margin: 0 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical
-}
-
-.modalCardItem > *:nth-child(4) > span {
-    font-size: 0.875rem;
-    line-height: 1.5em;
-    font-weight: 300;
+.modalCardItem > img {
+    object-fit: cover;
 }
 
 .modalCardItemSkeleton {
@@ -349,7 +252,7 @@
     gap: 6px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px); /* 사파리 호환성을 위한 추가 */
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(var(--background-color), 0.6);
 }
 
 .modalCardFooter  button {
@@ -363,7 +266,7 @@
 
 .modalCardFooter  button:hover {
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(var(--primary-color), 0.1);
 }
 
 .modalCardFooter  button:disabled {
@@ -396,12 +299,11 @@
     padding: 0 5px;
     font-size: 1rem;
     line-height: 1.5em;
-    color: black;
     background: none;
     border: none;
     outline: none; /* 기본 outline 제거 */
     box-shadow: none; /* 기본 box-shadow 제거 */
-    border-bottom: black solid 1px;
+    border-bottom: rgb(var(--primary-color)) solid 1px;
 }
 
 
@@ -415,7 +317,7 @@
 .modalNavItemClick > .moveBackgroundAnimation {
     background-image: none;
     display: block;
-    background-color: black;
+    background-color: rgb(var(--primary-color));
     opacity: 0.1;
     animation: none;
 }
@@ -448,6 +350,6 @@
 }
 
 .modalCloseButton:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(var(--primary-color), 0.1);
     border-radius: 5px;
 }

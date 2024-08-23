@@ -17,13 +17,13 @@ export default function SvgNext({
             xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M15.5 17L7.5 9L15.5 1"
-                stroke="black"
+                stroke="rgb(var(--primary-color))"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
                 d="M9.5 17L1.5 9L9.5 1"
-                stroke="black"
+                stroke="rgb(var(--primary-color))"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"/>

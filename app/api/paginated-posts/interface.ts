@@ -1,7 +1,7 @@
-import {GetPaginatedPostDocument} from "@/services/getPaginatedPosts/interface";
+import {PaginatedPostsWithCount} from "@/services/paginatedPosts/interface";
 
 interface ApiResponseSuccess {
-    data: GetPaginatedPostDocument | null;
+    data: PaginatedPostsWithCount | null;
     error?: never;
 }
 

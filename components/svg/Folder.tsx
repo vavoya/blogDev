@@ -5,7 +5,8 @@ import {SVGProps} from "react";
  */
 export default function SvgFolder({
                                       width = "28",
-                                      height = "23"
+                                      height = "23",
+                                      strokeWidth = "3"
                                   }: SVGProps<SVGSVGElement>) {
     return (
         <svg
@@ -17,8 +18,8 @@ export default function SvgFolder({
             xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M2 20.6667V2H10.6667L13.3333 4.66667H26L25.8775 20.6667H2Z"
-                stroke="black"
-                strokeWidth="3"
+                stroke="rgb(var(--primary-color))"
+                strokeWidth={strokeWidth}
                 strokeLinecap="round"
                 strokeLinejoin="round"/>
         </svg>

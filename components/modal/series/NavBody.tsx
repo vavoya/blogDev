@@ -1,7 +1,5 @@
 import {SeriesObject} from "@/types/series.interface";
-import styles from "@/components/modal/common/modal.module.css";
-import SeriesModalNavItem from "@/components/modal/series/NavItem";
-import {formatDate} from "@/utils/data";
+import NavItem from "@/components/modal/common/NavItem";
 
 interface NavBodyProps {
     data: SeriesObject
@@ -12,28 +10,27 @@ interface NavBodyProps {
 export default function SeriesNavBody({data, stack, setStack}: NavBodyProps) {
 
     return (
-        <div className={styles.modalNavBody}>
+        <>
             {
                 Object.keys(data).map((seriesId: string) => {
                     const name = data[seriesId].name
                     const postCount = data[seriesId].postCount
-                    const date = new Date(data[seriesId].updatedAt);
-                    const updatedAt = formatDate(date)
-                    const imageUrl = data[seriesId].thumbnail
 
                     return (
-                        <SeriesModalNavItem
+                        <NavItem
                             key={seriesId}
-                            stack={stack}
-                            setStack={setStack}
-                            imageUrl={imageUrl}
                             name={name}
-                            updatedAt={updatedAt}
-                            postCount={postCount}
-                            seriesId={Number(seriesId)}/>
+                            isSelected={stack.includes(+seriesId)}
+                            postCount={postCount} onClick={() => {
+                                if (stack.includes(+seriesId)) {
+                                    setStack([])
+                                    return
+                                }
+                                setStack([+seriesId])
+                            }}/>
                     )
                 })
             }
-        </div>
+        </>
     )
 }

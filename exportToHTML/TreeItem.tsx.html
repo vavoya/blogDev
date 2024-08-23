@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>TreeItem.tsx</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #e8bf6a;}
+.s4 { color: #bababa;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+TreeItem.tsx</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">styles from </span><span class="s2">&quot;./TreeItem.module.css&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">SvgAdd from </span><span class="s2">&quot;@/components/svg/Add&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">SvgSubtract from </span><span class="s2">&quot;@/components/svg/Subtrack&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">SvgFolder from </span><span class="s2">&quot;@/components/svg/Folder&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">SvgSeries from </span><span class="s2">&quot;@/components/svg/Series&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">SvgTag from </span><span class="s2">&quot;@/components/svg/Tag&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">SvgPost from </span><span class="s2">&quot;@/components/svg/Post&quot;</span><span class="s0">;</span>
+
+<span class="s0">export interface </span><span class="s1">TreeItemProps {</span>
+    <span class="s1">type: string</span>
+    <span class="s1">itemName: string</span><span class="s0">;</span>
+    <span class="s1">level: number</span><span class="s0">;</span>
+    <span class="s1">clickCallback?: () =&gt; </span><span class="s0">void;</span>
+    <span class="s1">addCallback?: () =&gt; </span><span class="s0">void;</span>
+    <span class="s1">subtractCallback?: () =&gt; </span><span class="s0">void;</span>
+<span class="s1">}</span>
+
+<span class="s0">export default function </span><span class="s1">TreeItem({type</span><span class="s0">, </span><span class="s1">itemName</span><span class="s0">, </span><span class="s1">level</span><span class="s0">, </span><span class="s1">clickCallback</span><span class="s0">, </span><span class="s1">addCallback</span><span class="s0">, </span><span class="s1">subtractCallback}: TreeItemProps) {</span>
+
+    <span class="s0">return </span><span class="s1">(</span>
+        <span class="s3">&lt;div</span>
+            <span class="s4">className</span><span class="s2">=</span><span class="s1">{styles.treeItem}</span>
+            <span class="s4">style</span><span class="s2">=</span><span class="s1">{{marginLeft: </span><span class="s2">`</span><span class="s1">${(level + </span><span class="s5">2</span><span class="s1">) * </span><span class="s5">30</span><span class="s1">}</span><span class="s2">px`</span><span class="s1">}}</span><span class="s3">&gt;</span>
+            <span class="s3">&lt;button </span><span class="s4">className</span><span class="s2">=</span><span class="s1">{styles.item} </span><span class="s4">onClick</span><span class="s2">=</span><span class="s1">{clickCallback}</span><span class="s3">&gt;</span>
+                <span class="s3">&lt;div </span><span class="s4">className</span><span class="s2">=</span><span class="s1">{styles.itemIcon}</span><span class="s3">&gt;</span>
+                    <span class="s1">{</span>
+                        <span class="s1">type === </span><span class="s2">'folder' </span><span class="s1">&amp;&amp; </span><span class="s3">&lt;SvgFolder </span><span class="s4">strokeWidth</span><span class="s2">=</span><span class="s1">{</span><span class="s5">2</span><span class="s1">} </span><span class="s3">/&gt;</span>
+                    <span class="s1">}</span>
+                    <span class="s1">{</span>
+                        <span class="s1">type === </span><span class="s2">'series' </span><span class="s1">&amp;&amp; </span><span class="s3">&lt;SvgSeries </span><span class="s4">strokeWidth</span><span class="s2">=</span><span class="s1">{</span><span class="s5">2</span><span class="s1">} </span><span class="s3">/&gt;</span>
+                    <span class="s1">}</span>
+                    <span class="s1">{</span>
+                        <span class="s1">type === </span><span class="s2">'tag' </span><span class="s1">&amp;&amp; </span><span class="s3">&lt;SvgTag </span><span class="s4">width</span><span class="s2">=</span><span class="s1">{</span><span class="s5">19.12</span><span class="s1">} </span><span class="s4">height</span><span class="s2">=</span><span class="s1">{</span><span class="s5">18</span><span class="s1">} </span><span class="s4">strokeWidth</span><span class="s2">=</span><span class="s1">{</span><span class="s5">2</span><span class="s1">} </span><span class="s3">/&gt;</span>
+                    <span class="s1">}</span>
+                    <span class="s1">{</span>
+                        <span class="s1">type === </span><span class="s2">'post' </span><span class="s1">&amp;&amp; </span><span class="s3">&lt;SvgPost </span><span class="s4">strokeWidth</span><span class="s2">=</span><span class="s1">{</span><span class="s5">2</span><span class="s1">} </span><span class="s3">/&gt;</span>
+                    <span class="s1">}</span>
+                <span class="s3">&lt;/div&gt;</span>
+                <span class="s3">&lt;button </span><span class="s4">className</span><span class="s2">=</span><span class="s1">{styles.itemName}</span><span class="s3">&gt;</span>
+                    <span class="s1">{itemName}</span>
+                <span class="s3">&lt;/button&gt;</span>
+            <span class="s3">&lt;/button&gt;</span>
+            <span class="s3">&lt;div </span><span class="s4">className</span><span class="s2">=</span><span class="s1">{styles.buttonSection}</span><span class="s3">&gt;</span>
+                <span class="s1">{</span>
+                    <span class="s1">subtractCallback &amp;&amp;</span>
+                    <span class="s3">&lt;button </span><span class="s4">className</span><span class="s2">=</span><span class="s1">{styles.button} </span><span class="s4">onClick</span><span class="s2">=</span><span class="s1">{subtractCallback}</span><span class="s3">&gt;</span>
+                        <span class="s3">&lt;SvgSubtract /&gt;</span>
+                    <span class="s3">&lt;/button&gt;</span>
+                <span class="s1">}</span>
+                <span class="s1">{</span>
+                    <span class="s1">addCallback &amp;&amp;</span>
+                    <span class="s3">&lt;button </span><span class="s4">className</span><span class="s2">=</span><span class="s1">{styles.button} </span><span class="s4">onClick</span><span class="s2">=</span><span class="s1">{addCallback}</span><span class="s3">&gt;</span>
+                        <span class="s3">&lt;SvgAdd /&gt;</span>
+                    <span class="s3">&lt;/button&gt;</span>
+                <span class="s1">}</span>
+            <span class="s3">&lt;/div&gt;</span>
+        <span class="s3">&lt;/div&gt;</span>
+    <span class="s1">)</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

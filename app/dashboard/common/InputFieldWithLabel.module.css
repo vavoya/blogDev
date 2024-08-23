@@ -1,0 +1,33 @@
+
+
+
+.inputBox {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    gap: 5px;
+}
+
+.inputBox > label {
+    font-size: 1.25rem;
+    line-height: 1.5em;
+    font-weight: 500;
+}
+
+.inputBox > input {
+    font-size: 1rem;
+    line-height: 1.5em;
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
+.inputBox > span {
+    position: absolute;
+    top: 100%;
+    color: red;
+    font-size: 0.875rem;
+    line-height: 1.5em;
+}

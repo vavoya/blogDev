@@ -5,19 +5,19 @@ import React, {useCallback, useEffect, useState} from "react";
 import {createPortal} from "react-dom";
 import {Directories} from "@/types/directories.interface";
 import {Slugs} from "@/components/sideBar/SideBar";
-import {GetInitPageNum} from "@/services/getInitPageNum/interface";
 import {IconLabel} from "@/components/sideBar/directory/IconLabel";
-import Modal from "@/components/modal/directory/DynamicModal";
+import Modal from "@/components/modal/directory/Modal";
 
 interface NavButtonProps {
     userId: number
     slugs: Slugs
-    initPageNum: GetInitPageNum
+    initPageNum: number
+    initDirectoryId: number
     data: Directories
     directories: Directories
 }
 
-export function NavButton({userId, slugs, initPageNum, data, directories}: NavButtonProps ) {
+export function NavButton({userId, slugs, initPageNum, initDirectoryId, data, directories}: NavButtonProps ) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
 
@@ -55,6 +55,7 @@ export function NavButton({userId, slugs, initPageNum, data, directories}: NavBu
                         userId={userId}
                         slugs={slugs}
                         initPageNum={initPageNum}
+                        initDirectoryId={initDirectoryId}
                         data={data}
                         directories={directories}/>
                 </div>,

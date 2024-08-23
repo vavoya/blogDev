@@ -1,17 +1,15 @@
 import {useCallback, useEffect, useMemo, useState} from "react";
-import {PaginatedPostDocument} from "@/services/getPaginatedPosts/interface";
-import ApiResponse from "@/app/api/paginated-posts/interface";
+import {PaginatedPost, PaginatedPostsWithCount} from "@/services/paginatedPosts/interface";
 import styles from "@/components/modal/common/modal.module.css";
 import Pagination from "@/components/modal/common/Pagination";
 import PaginationSearch from "@/components/modal/common/PaginationSearch";
 import {Directories} from "@/types/directories.interface";
 import CardBody from "@/components/modal/common/CardBody";
 import {Slugs} from "@/components/sideBar/SideBar";
-const uri = process.env.NEXT_PUBLIC_API_BASE_URL as string;
+import {fetchPaginatedPostsByTagIds} from "@/fetcher/client/GET/paginatedPostsFetcher";
 
 
 interface CardSectionProps {
-    onClose: () => void
     userId: number
     slugs: Slugs
     title: string
@@ -19,9 +17,9 @@ interface CardSectionProps {
     stack: number[]
 }
 
-export default function CardSection({onClose, userId, slugs, title, directories, stack}: CardSectionProps) {
+export default function CardSection({userId, slugs, title, directories, stack}: CardSectionProps) {
     const [pageNum, setPageNum] = useState(1);
-    const [paginatedPosts, setPaginatedPosts] = useState<PaginatedPostDocument[]>([])
+    const [paginatedPosts, setPaginatedPosts] = useState<PaginatedPost[]>([])
     const [postCount, setPostCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const maxPageNum = useMemo(() => Math.ceil(postCount / 12), [postCount])
@@ -37,14 +35,11 @@ export default function CardSection({onClose, userId, slugs, title, directories,
         }
 
         setIsLoading(true);
-        const response = await fetch(`${uri}/api/paginated-posts?userId=${userId}&tagIds=${stack.join(',')}&pageNum=${pageNum}`);
-        const result: ApiResponse = await response.json();
-        if (response.status === 200) {
-            const paginatedPostDocuments = result.data!.PaginatedPostDocuments ?? []
-            const postCount = result.data!.postCount
 
-            setPaginatedPosts(paginatedPostDocuments)
-            setPostCount(postCount)
+        const paginatedPostsWithCount: PaginatedPostsWithCount | null = await fetchPaginatedPostsByTagIds(userId, stack, pageNum)
+        if (paginatedPostsWithCount !== null) {
+            setPaginatedPosts(paginatedPostsWithCount.paginatedPosts)
+            setPostCount(paginatedPostsWithCount.postCount)
             setIsLoading(false);
         }
     }, [])
@@ -74,8 +69,7 @@ export default function CardSection({onClose, userId, slugs, title, directories,
                 postCount={postCount}
                 slugs={slugs}
                 directories={directories}
-                paginatedPosts={paginatedPosts}
-                onClose={onClose}/>
+                paginatedPosts={paginatedPosts}/>
             <div className={styles.modalCardFooter}>
                 <Pagination
                     getPaginatedPosts={(pageNum) => getPaginatedPosts(userId, stack, pageNum)}

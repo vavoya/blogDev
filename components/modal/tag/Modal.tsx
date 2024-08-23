@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 // interface
 import {Tags} from "@/types/tags.interface";
 import {Directories} from "@/types/directories.interface";
-import {GetInitPageNum} from "@/services/getInitPageNum/interface";
 import {Slugs} from "@/components/sideBar/SideBar";
 
 // components
@@ -18,13 +17,12 @@ export interface ModalProps {
     onClose: () => void;
     userId: number
     slugs: Slugs
-    initPageNum: GetInitPageNum
     data: Tags
     directories: Directories
 }
 
 
-export default function Modal({isModalOpen, onClose, userId, slugs, initPageNum, data, directories}: ModalProps) {
+export default function Modal({isModalOpen, onClose, userId, slugs, data, directories}: ModalProps) {
     const [ stack, setStack ] = useState<number[]>([])
 
     useEffect(() => {
@@ -40,7 +38,6 @@ export default function Modal({isModalOpen, onClose, userId, slugs, initPageNum,
             NavBody={<NavBody stack={stack} setStack={setStack} data={data}/>}
             CardSection={
             <CardSection
-                onClose={onClose}
                 userId={userId}
                 slugs={slugs}
                 title={stack.map(v => data[v].name).join(', ')}

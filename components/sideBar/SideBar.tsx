@@ -8,49 +8,47 @@ import SeriesDataProvider from "@/components/sideBar/series/DataProvider";
 import TagFallBackButton from "@/components/sideBar/tag/FallBackNavButton";
 import TagDataProvider from "@/components/sideBar/tag/DataProvider";
 
-
 export interface Slugs {
-    blogName: string
+    blogSlug: string
     postSlug?: string
 }
 
 export default async function SideBar({slugs, userId}: {slugs: Slugs, userId: number}) {
 
     return (
-        <>
-            <nav className={styles.nav}>
-                <ul className={styles.ul}>
-                    <li>
-                        <Suspense fallback={
-                            <DirectoryFallBackButton />
-                        }>
-                            <DirectoryDataProvider slugs={slugs} userId={userId} />
-                        </Suspense>
-                    </li>
-                    <li>
-                        <Suspense fallback={
+        <nav className={styles.nav}>
+            <ul className={styles.ul}>
+                <Suspense fallback={
+                    <>
+                        <li>
+                            <DirectoryFallBackButton/>
+                        </li>
+                        <li>
                             <SeriesFallBackButton />
-                        }>
-                            <SeriesDataProvider slugs={slugs} userId={userId} />
-                        </Suspense>
+                        </li>
+                        <li>
+                            <TagFallBackButton />
+                        </li>
+                        <li>
+                            <TagFallBackButton />
+                        </li>
+                    </>
+                }>
+                    <li>
+                        <DirectoryDataProvider slugs={slugs} userId={userId}/>
                     </li>
                     <li>
-                        <Suspense fallback={
-                            <TagFallBackButton />
-                        }>
-                            <TagDataProvider slugs={slugs} userId={userId} />
-                        </Suspense>
+                        <SeriesDataProvider slugs={slugs} userId={userId}/>
                     </li>
                     <li>
-                        <Suspense fallback={
-                            <TagFallBackButton />
-                        }>
-                            <TagDataProvider slugs={slugs} userId={userId} />
-                        </Suspense>
+                        <TagDataProvider slugs={slugs} userId={userId}/>
                     </li>
-                </ul>
-            </nav>
-        </>
+                    <li>
+                        <TagDataProvider slugs={slugs} userId={userId}/>
+                    </li>
+                </Suspense>
+            </ul>
+        </nav>
     )
 }
 

@@ -1,6 +1,6 @@
 import styles from "@/components/modal/common/modal.module.css";
 import ModalCardItem from "@/components/modal/common/CardItem";
-import {PaginatedPostDocument} from "@/services/getPaginatedPosts/interface";
+import {PaginatedPost} from "@/services/paginatedPosts/interface";
 import {Directories} from "@/types/directories.interface";
 import {formatDate} from "@/utils/data";
 import getDirectoryTree from "@/utils/directoryTree";
@@ -13,12 +13,11 @@ interface CardBodyProps {
     noPostsMessage: string;
     postCount: number;
     slugs: Slugs;
-    paginatedPosts: PaginatedPostDocument[];
+    paginatedPosts: PaginatedPost[];
     directories: Directories;
-    onClose: () => void
 }
 
-export default function CardBody({isLoading, loadingMessage, noPostsMessage, postCount, slugs, paginatedPosts, directories, onClose }: CardBodyProps) {
+export default function CardBody({isLoading, loadingMessage, noPostsMessage, postCount, slugs, paginatedPosts, directories }: CardBodyProps) {
 
     return (
         <div className={styles.modalCardBody}>
@@ -28,7 +27,7 @@ export default function CardBody({isLoading, loadingMessage, noPostsMessage, pos
                     : postCount === 0
                         ? (<span>{noPostsMessage}</span>)
                         : paginatedPosts.map((v, i) => {
-                            const href = `/${slugs.blogName}/${v.slug}`;
+                            const href = `/${slugs.blogSlug}/${v.slug}`;
                             const thumbUrl = v.metadata.thumbUrl;
                             const title = v.title;
                             const description = v.metadata.description;
@@ -48,8 +47,7 @@ export default function CardBody({isLoading, loadingMessage, noPostsMessage, pos
                                     title={title}
                                     description={description}
                                     createdAt={createdAt}
-                                    path={path}
-                                    onClose={onClose}/>
+                                    path={path}/>
                             )
                         })
             }

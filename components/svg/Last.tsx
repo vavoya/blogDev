@@ -17,13 +17,13 @@ export default function SvgPrev({
             xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M7 1L15 9L7 17"
-                stroke="black"
+                stroke="rgb(var(--primary-color))"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"/>
             <path
                 d="M1 1L9 9L1 17"
-                stroke="black"
+                stroke="rgb(var(--primary-color))"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"/>

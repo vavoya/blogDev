@@ -1,0 +1,22 @@
+
+
+.registerPage > h1{
+    font-size: 4rem;
+    line-height: 1.5em;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.registerPage > button {
+    margin-top: 50px;
+    padding: 5px 10px;
+    transition: background-color 0.3s, border-radius 0.3s;
+    font-size: 1.25rem;
+    line-height: 1.5em;
+    font-weight: 500;
+}
+
+.registerPage > button:hover {
+    background-color: rgba(var(--primary-color), 0.1);
+    border-radius: 10px;
+}

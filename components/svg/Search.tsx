@@ -17,7 +17,7 @@ export default function SvgSearch({
             xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M17.1577 17.1582L25.9998 26.0003"
-                stroke="black"
+                stroke="rgb(var(--primary-color))"
                 strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"/>
@@ -25,7 +25,7 @@ export default function SvgSearch({
                 cx="10.8421"
                 cy="10.8421"
                 r="8.8421"
-                stroke="black"
+                stroke="rgb(var(--primary-color))"
                 strokeWidth="3"/>
         </svg>
     );

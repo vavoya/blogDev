@@ -1,0 +1,93 @@
+
+
+
+.seriesPostListContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 1.25rem;
+    line-height: 1.5em;
+    font-weight: 500;
+}
+
+.postList {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.postItem {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 10px;
+    width: 100%;
+}
+
+.postNumberInput {
+    font-size: 1rem;
+    line-height: 1.5em;
+    text-align: right;
+    width: 30px;
+}
+
+.postDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 1;
+    min-width: 0;
+}
+
+
+.postPathBox {
+    position: relative;
+    width: 100%;
+}
+
+
+.postPath {
+    font-size: 0.75rem;
+    line-height: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.postTitleBox {
+    position: relative;
+}
+
+.postTitle {
+    font-size: 1rem;
+    line-height: 1.5em;
+    overflow: hidden;          /* 넘치는 내용을 숨김 */
+    text-overflow: ellipsis;   /* 넘치는 내용을 ...으로 표시 */
+}
+
+.dropBoxButton {
+    text-align: left;
+    padding: 5px 10px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropBoxButtonFocus {
+    background-color: rgba(var(--primary-color), 0.1);
+}
+
+.dropBoxButton:hover {
+    background-color: rgba(var(--primary-color), 0.1);
+}

@@ -18,7 +18,7 @@ export default function SvgClose({
         >
             <path
                 d="M1 1C10.6 10.6 9 9 7 7M7 7L13 1M7 7L1 13M7 7L13 13"
-                stroke="black"
+                stroke="rgb(var(--primary-color))"
                 strokeWidth="2"
                 strokeLinecap="round"
             />

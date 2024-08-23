@@ -5,7 +5,7 @@ import React, {useCallback, useState} from "react";
 import {createPortal} from "react-dom";
 import {Directories} from "@/types/directories.interface";
 import {Slugs} from "@/components/sideBar/SideBar";
-import {GetInitPageNum} from "@/services/getInitPageNum/interface";
+import {GetInitPageNum} from "@/services/postIndex/interface";
 import {IconLabel} from "@/components/sideBar/directory/IconLabel";
 import Modal from "@/components/modal/directory/Modal";
 

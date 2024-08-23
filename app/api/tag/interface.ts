@@ -1,7 +1,7 @@
-import {GetTagsDocument} from "@/services/getTags/byUserId";
+import {TagWithoutId} from "@/services/tags/getByUserId";
 
 interface ApiResponseSuccess {
-    data: GetTagsDocument | null
+    data: TagWithoutId | null
     error?: never;
 }
 

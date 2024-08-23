@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {GetSeriesDocument, getSeriesByUserId} from "@/services/getSeries/byUserId";
+import {SeriesWithoutId, getByUserId} from "@/services/series/getByUserId";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ error: 'Invalid userId parameter' }, { status: 400, headers: { 'Content-Type': 'application/json; charset=utf-8' }});
     }
     try {
-        const tags: GetSeriesDocument | null = await getSeriesByUserId({ userId });
+        const tags: SeriesWithoutId | null = await getByUserId({ userId });
 
         return NextResponse.json(
             { data: tags },
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
                     'Cache-Control': 'max-age=60, s-maxage=120, stale-while-revalidate=30'
             }});
     } catch (error) {
-        console.error('Error fetching tags:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500, headers: { 'Content-Type': 'application/json; charset=utf-8' } });
+        console.error('ErrorPage fetching series:', error);
+        return NextResponse.json({ error: 'Internal Server ErrorPage' }, { status: 500, headers: { 'Content-Type': 'application/json; charset=utf-8' } });
     }
 }

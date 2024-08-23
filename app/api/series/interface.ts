@@ -1,7 +1,7 @@
-import {GetSeriesDocument} from "@/services/getSeries/byUserId";
+import {SeriesWithoutId} from "@/services/series/getByUserId";
 
 interface ApiResponseSuccess {
-    data: GetSeriesDocument | null
+    data: SeriesWithoutId | null
     error?: never;
 }
 

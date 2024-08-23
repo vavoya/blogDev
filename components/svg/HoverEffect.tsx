@@ -20,7 +20,7 @@ export default function HoverEffect({
             <path
                 opacity={opacity}
                 d="M0.5 0H1L0.5 1H0L0.5 0Z"
-                fill="black"/>
+                fill="rgb(var(--primary-color))"/>
         </svg>
     )
 }

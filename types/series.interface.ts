@@ -2,9 +2,7 @@
 
 export interface Series {
     name: string;
-    updatedAt: string;
     postCount: number;
-    thumbnail: string;
 }
 
 export type SeriesObject = { [key: string]: Series }

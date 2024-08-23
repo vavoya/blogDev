@@ -5,7 +5,7 @@ import {Directories} from "@/types/directories.interface";
 import InitPageNumApiResponse from "@/app/api/init-page-num-directoryId/interface";
 import {Slugs} from "../SideBar"
 import React from "react";
-import {GetInitPageNum} from "@/services/getInitPageNum/interface";
+import {GetInitPageNum} from "@/services/postIndex/interface";
 import {NavButton} from "@/components/sideBar/search/NavButton";
 
 const uri = process.env.NEXT_PUBLIC_API_BASE_URL as string;

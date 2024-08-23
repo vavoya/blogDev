@@ -1,6 +1,7 @@
 import styles from "@/components/modal/common/modal.module.css";
 import SvgClose from "@/components/svg/Close";
 import React, {useEffect} from "react";
+import {useRouter} from "next/navigation";
 
 // Modal 컴포넌트의 props 타입 정의
 export interface ModalLayoutProps {
@@ -12,6 +13,11 @@ export interface ModalLayoutProps {
 }
 
 export default function ModalLayout({isModalOpen, onClose, NavHeader, NavBody, CardSection}: ModalLayoutProps) {
+    const router = useRouter();
+    useEffect(() => {
+        onClose()
+    }, [onClose, router]);
+
     useEffect(() => {
         if (!isModalOpen) return
 

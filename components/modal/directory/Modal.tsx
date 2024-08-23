@@ -2,7 +2,6 @@ import React, {MutableRefObject, ReactElement, useCallback, useEffect, useMemo, 
 
 // interface
 import {Directories} from "@/types/directories.interface";
-import {GetInitPageNum} from "@/services/getInitPageNum/interface";
 import {Slugs} from "@/components/sideBar/SideBar";
 
 // components
@@ -20,17 +19,17 @@ export interface ModalProps {
     onClose: () => void;
     userId: number
     slugs: Slugs
-    initPageNum: GetInitPageNum
+    initPageNum: number
+    initDirectoryId: number
     data: Directories
     directories: Directories
 }
 
 
-export default function Modal({isModalOpen, onClose, userId, slugs, initPageNum, data, directories}: ModalProps) {
+export default function Modal({isModalOpen, onClose, userId, slugs, initPageNum, initDirectoryId, data, directories}: ModalProps) {
     const initStackProcess = useCallback(() => {
-        const directoryId = initPageNum.directoryId
-        return getDirectoryTree({directories, directoryId}).tree
-    }, [directories, initPageNum.directoryId])
+        return getDirectoryTree({directories, directoryId: initDirectoryId}).tree
+    }, [directories, initDirectoryId])
 
     const [ stack, setStack ] = useState<number[]>(initStackProcess())
 
@@ -46,14 +45,13 @@ export default function Modal({isModalOpen, onClose, userId, slugs, initPageNum,
             NavHeader={<NavHeader stack={stack} setStack={setStack} />}
             NavBody={<NavBody stack={stack} setStack={setStack} directories={directories}/>}
             CardSection={<CardSection
-                onClose={onClose}
                 userId={userId}
                 slugs={slugs}
                 title={stack.map(v => data[v].name).join('/')}
                 postCount={data[stack[stack.length - 1]].postCount}
                 directories={directories}
                 stack={stack}
-                initPageNum={initPageNum.pageNum}/>}
+                initPageNum={initPageNum}/>}
         />
     )
 }
