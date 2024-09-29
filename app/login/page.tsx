@@ -6,11 +6,10 @@ import Link from "next/link";
 import SvgApple from "@/components/svg/Apple";
 import SvgGoogle from "@/components/svg/Google";
 import {auth, signIn, signOut} from "@/auth"
-import {redirect} from "next/navigation";
 
 
-export default async function Page() {
-
+export default async function Page({searchParams}: {searchParams: { [key: string]: string | string[] | undefined }}) {
+    const from = typeof searchParams.from === 'string' ? searchParams.from : undefined
 
     return (
         <main style={{
@@ -33,8 +32,7 @@ export default async function Page() {
                     <form
                         action={async () => {
                             "use server"
-                            await signIn("google", { redirectTo: '/register' })
-
+                            await signIn("google", { redirectTo: `/register${from ? `?from=${from}`: ""}` })
                         }}
                     >
                         <button>

@@ -11,4 +11,5 @@ export interface SeriesDocument extends Document {
     _id: number
     series: SeriesObject
     userId: number
+    updatedAt: Date
 }

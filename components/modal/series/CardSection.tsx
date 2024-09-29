@@ -35,7 +35,7 @@ export default function CardSection({userId, slugs, title, postCount, directorie
         }
 
         // 현재 시리즈 포스트가 없으면
-        if (directories[stack.at(-1) as number].postCount === 0)  {
+        if (postCount === 0)  {
             setPaginatedPosts([])
             setIsLoading(false);
             return
@@ -49,7 +49,7 @@ export default function CardSection({userId, slugs, title, postCount, directorie
             setPaginatedPosts(paginatedPostsWithCount.paginatedPosts)
             setIsLoading(false);
         }
-    }, [directories, userId])
+    }, [postCount, userId])
 
 
     // 디렉토리 경로 변경에 따라 페이지네이션 요청

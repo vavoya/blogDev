@@ -1,0 +1,40 @@
+
+
+
+.folderItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    word-break: break-all; /* 단어 중간에서도 줄바꿈 가능 */
+}
+
+.folderItemSelected {
+    background-color: rgba(var(--primary-color), 0.1);
+}
+
+.folderItem:hover {
+    background-color: rgba(var(--primary-color), 0.1);
+}
+
+.folderItem > div {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.folderItemName {
+    font-size: 1rem;
+    line-height: 1.5em;
+    margin-left: 10px;
+}
+
+.folderItemCount {
+    font-size: 0.75rem;
+    line-height: 1.5em;
+    opacity: 0.5;
+    margin-left: 5px;
+}

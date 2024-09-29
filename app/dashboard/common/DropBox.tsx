@@ -14,10 +14,23 @@ interface DropBoxProps {
 export default function DropBox({setDropBox, enterHandler, arrowDownHandler, arrowUpHandler, title,  children}: DropBoxProps) {
     const ref = useRef<HTMLDivElement>(null)
     useEffect(() => {
+        const closeDropBox = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                setDropBox(false)
+                e.preventDefault()
+            }
+        }
+
+        document.addEventListener('keydown', closeDropBox)
+
         if(ref.current) {
             ref.current.focus()
         }
-    })
+
+        return () => {
+            document.removeEventListener('keydown', closeDropBox)
+        }
+    }, [])
 
     return (
         <div

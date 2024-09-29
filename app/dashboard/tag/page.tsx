@@ -7,7 +7,7 @@ import {Tags} from "@/types/tags.interface";
 import ServerErrorPage from "@/app/_error/ServerErrorPage";
 import AccessDeniedPage from "@/app/_error/AccessDeniedPage";
 import React from "react";
-import Header from "@/components/header/Header";
+import DefaultHeader from "@/components/header/DefaultHeader";
 import DashboardSideBar from "@/components/sideBar/DashboardSideBar";
 import Series from "@/app/dashboard/series/Series";
 
@@ -35,7 +35,7 @@ export default async function Page() {
 
     return (
         <>
-            <Header slug1={"dashboard"} slug2={"tag"}/>
+            <DefaultHeader slug1={"dashboard"} slug2={"tag"}/>
             <DashboardSideBar slug={"tag"}/>
             <Tag data={data.data}/>
         </>

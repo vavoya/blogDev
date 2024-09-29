@@ -19,6 +19,11 @@ interface SeriesProps {
     userId: number
 }
 
+export interface SeriesPostWithKey extends SeriesPost {
+    key: number
+}
+
+
 export default function Series({data, directories, userId}: SeriesProps) {
     // 시리즈 목록
     const [series, setSeries] = useState<SeriesObject>({...data});
@@ -31,19 +36,28 @@ export default function Series({data, directories, userId}: SeriesProps) {
     // 시리즈 포스트 로딩 에러
     const [loadingErrorCode, setLoadingErrorCode] = useState<null | number>(null)
     // 시리즈 포스트 목록
-    const [seriesPosts, setSeriesPosts] = useState<SeriesPost[]>([])
+    const [seriesPosts, setSeriesPosts] = useState<SeriesPostWithKey[]>([])
 
     // 선택된 시리즈의 포스트 목록 가져오기
     useEffect(() => {
         if (currentSeriesId !== null) {
             setIsLoading(true)
             fetchSeriesPosts(userId, currentSeriesId).then(data => {
-                console.log(data)
+                const newSeriesPosts: SeriesPostWithKey[] = []
                 if (data && data.length > 0) {
-                    setSeriesPosts(data.sort((a,b) => a.seriesOrder - b.seriesOrder))
-                } else {
-                    setSeriesPosts([{title: "", seriesOrder: 0, directoryId: -1, slug: ""}])
+                    data.sort((a,b) => a.seriesOrder - b.seriesOrder)
+                    data.forEach((seriesPost,i) => {
+                        newSeriesPosts.push({...seriesPost, key : i})
+                    })
                 }
+                // 특정 필드 (value)의 최대 값을 찾기
+                const nextKey = newSeriesPosts.reduce((max, postSeries) => {
+                    return postSeries.key > max ? postSeries.key : max;
+                }, -1) + 1;
+
+                newSeriesPosts.push({title: "", seriesOrder: 0, directoryId: 0, slug: "", key: nextKey})
+
+                setSeriesPosts(newSeriesPosts)
                 setLoadingErrorCode(null)
             }).catch(error => {
                 setLoadingErrorCode(0)

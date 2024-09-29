@@ -1,20 +1,19 @@
 import {Directories} from "@/types/directories.interface";
-import {SeriesPost} from "@/services/seriesPosts/interface";
 import {useEffect, useState} from "react";
 import styles from "@/app/dashboard/series/SeriesPostList/SeriesPostList.module.css";
 import PostPath from "@/app/dashboard/series/SeriesPostList/PostPath";
 import PostTitle from "@/app/dashboard/series/SeriesPostList/PostTitle";
-import {set} from "mobx";
+import {SeriesPostWithKey} from "@/app/dashboard/series/Series";
 
 interface PostItemProps {
     state: {
         directories: Directories,
-        seriesPosts: SeriesPost[],
+        seriesPosts: SeriesPostWithKey[],
         seriesOrder: number
         userId: number
     },
     setState: {
-        seriesPosts: (seriesPosts: SeriesPost[]) => void
+        seriesPosts: (seriesPosts: SeriesPostWithKey[]) => void
     }
 }
 
@@ -23,9 +22,6 @@ export default function PostItem({state, setState}: PostItemProps) {
     const [isTitleDropBoxVisible, setIsTitleDropBoxVisible] = useState<boolean>(false)
     const [index, setIndex] = useState<number>(0)
 
-    useEffect(() => {
-        console.log("마운트")
-    },[])
 
     return (
         <div
@@ -36,6 +32,9 @@ export default function PostItem({state, setState}: PostItemProps) {
             <input
                 type="text"
                 title="정수만 입력 가능합니다."
+                onChange={() => {
+
+                }}
                 value={state.seriesOrder + 1}
                 className={styles.postNumberInput}
             />

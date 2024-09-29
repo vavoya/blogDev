@@ -1,8 +1,9 @@
 import SeriesApiResponse from "@/app/api/series/interface";
 import {FetchResult} from "@/fetcher/FetchResult";
-import {SeriesObject} from "@/types/series.interface";
+import {SeriesDocument} from "@/types/series.interface";
 const uri = process.env.NEXT_PUBLIC_API_BASE_URL as string;
 
+export type SeriesWithUpdatedAt = Pick<SeriesDocument, "series" | "updatedAt">
 
 export const fetchSeries = async (userId: number) => {
     const response = await fetch(`${uri}/api/series?userId=${userId}`, {
@@ -10,5 +11,15 @@ export const fetchSeries = async (userId: number) => {
     });
     const result: SeriesApiResponse = await response.json();
 
-    return new FetchResult<SeriesObject>(response.status, result.data?.series ?? null)
+    // 정상적인 쿼리 성공
+    if (response.status === 200 && result.data) {
+        const data = {
+            series: result.data.series,
+            updatedAt: new Date(result.data.updatedAt)
+        }
+
+        return new FetchResult<SeriesWithUpdatedAt>(response.status, data)
+    }
+
+    return new FetchResult<SeriesWithUpdatedAt>(response.status, null)
 }

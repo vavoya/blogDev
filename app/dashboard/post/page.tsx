@@ -7,10 +7,13 @@ import {Directories} from "@/types/directories.interface";
 
 
 export default async function Page() {
+    /*
     const session = (await auth()) as Session
     const userId = session.userId as number
 
-    const data: FetchResult<Directories> = await fetchDirectories(userId)
+     */
+
+    const data: FetchResult<Directories> = await fetchDirectories(0)
 
 
     return (

@@ -13,7 +13,7 @@ interface NavButtonProps {
     userId: number
     slugs: Slugs
     initPageNum: number
-    initSeriesId: number | null
+    initSeriesId: number
     data: SeriesObject
     directories: Directories
 }

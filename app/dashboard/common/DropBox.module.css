@@ -3,10 +3,12 @@
 
 .dropBox {
     position: absolute;
-    top: 0;
+    top: -1px;
+    left: -1px;
     width: 100%;
     background-color: rgb(var(--background-color));
-    box-shadow: 0 0 5px 5px rgba(var(--primary-color), 0.1);
+    border: rgb(var(--primary-color)) solid 1px;
+    /*box-shadow: 0 0 5px 5px rgba(var(--primary-color), 0.1);*/
 }
 
 .dropBox:focus {

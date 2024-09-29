@@ -1,7 +1,7 @@
 import styles from "./SeriesPostList.module.css";
 import {Directories} from "@/types/directories.interface";
-import {SeriesPost} from "@/services/seriesPosts/interface";
 import PostItem from "@/app/dashboard/series/SeriesPostList/PostItem";
+import {SeriesPostWithKey} from "@/app/dashboard/series/Series";
 
 
 
@@ -10,11 +10,11 @@ interface SeriesPostListProps {
         directories: Directories,
         isLoading: boolean,
         loadingErrorCode: number | null
-        seriesPosts: SeriesPost[]
+        seriesPosts: SeriesPostWithKey[]
         userId: number
     },
     setState: {
-        seriesPosts: (seriesPosts: SeriesPost[]) => void
+        seriesPosts: (seriesPosts: SeriesPostWithKey[]) => void
     }
 }
 
@@ -30,24 +30,21 @@ export default function SeriesPostList({state, setState}: SeriesPostListProps) {
             return <span>{loadingErrorText[state.loadingErrorCode]}</span>;
         }
 
-        if (state.seriesPosts.length > 0) {
-            return state.seriesPosts.map(seriesPost => (
-                <PostItem
-                    state={{
-                        directories: state.directories,
-                        seriesPosts: state.seriesPosts,
-                        seriesOrder: seriesPost.seriesOrder,
-                        userId: state.userId
-                    }}
-                    setState={{
-                        seriesPosts: setState.seriesPosts
-                    }}
-                    key={seriesPost.seriesOrder}
-                />
-            ));
-        }
-
-        return <span>포스트가 없습니다.</span>; // 시리즈에 포스트가 없을 때 처리
+        // 기존 seriesOrder 은 초기 정렬에만 사용, 이후에는 배열의 index를 seriesOrder로 사용
+        return state.seriesPosts.map((seriesPost, seriesOrder) => (
+            <PostItem
+                state={{
+                    directories: state.directories,
+                    seriesPosts: state.seriesPosts,
+                    seriesOrder: seriesOrder,
+                    userId: state.userId
+                }}
+                setState={{
+                    seriesPosts: setState.seriesPosts
+                }}
+                key={seriesPost.key}
+            />
+        ))
     };
 
     return (

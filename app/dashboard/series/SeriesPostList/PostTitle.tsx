@@ -1,16 +1,16 @@
 import styles from "@/app/dashboard/series/SeriesPostList/SeriesPostList.module.css";
 import DropBox from "@/app/dashboard/common/DropBox";
-import {SeriesPost} from "@/services/seriesPosts/interface";
 import {useCallback, useEffect, useRef, useState} from "react";
 import {fetchPaginatedPostsForSeries} from "@/fetcher/client/GET/paginatedPostsFetcher";
 import {PaginatedPost} from "@/services/paginatedPosts/forSeries/interface";
 import {Directories} from "@/types/directories.interface";
+import {SeriesPostWithKey} from "@/app/dashboard/series/Series";
 
 interface PostTitleProps {
     state: {
         directories: Directories
         isTitleDropBoxVisible: boolean
-        seriesPosts: SeriesPost[]
+        seriesPosts: SeriesPostWithKey[]
         seriesOrder: number
         index: number
         userId: number
@@ -18,7 +18,7 @@ interface PostTitleProps {
     setState: {
         isTitleDropBoxVisible: (isDropBoxVisible: boolean) => void
         index: (index: number) => void
-        seriesPosts: (seriesPosts: SeriesPost[]) => void
+        seriesPosts: (seriesPosts: SeriesPostWithKey[]) => void
     }
 }
 
@@ -34,15 +34,14 @@ export default function PostTitle({state, setState}: PostTitleProps) {
 
         const directoryId = state.seriesPosts[state.seriesOrder].directoryId
         const data = await fetchPaginatedPostsForSeries(state.userId, directoryId, pageNum)
-        console.log(data)
 
         if (data === undefined) {
             setLoadingState(3)
         } else if (data === null) {
             setLoadingState(0)
         } else {
-            const newTitleDropBoxItemDatas = [...titleDropBoxItemDatas]
-            newTitleDropBoxItemDatas.concat(data.paginatedPosts)
+            const newTitleDropBoxItemDatas = [...titleDropBoxItemDatas].concat(data.paginatedPosts)
+            console.log(data, newTitleDropBoxItemDatas)
             setTitleDropBoxItemDatas(newTitleDropBoxItemDatas)
             setPageNum(pageNum + 1)
             setLoadingState(1)
@@ -61,7 +60,7 @@ export default function PostTitle({state, setState}: PostTitleProps) {
         if (state.index < titleDropBoxItemDatas.length) {
             setState.index(state.index + 1)
         }
-    }, [setState, state.index])
+    }, [setState, state.index, titleDropBoxItemDatas.length])
 
 
 
@@ -82,24 +81,38 @@ export default function PostTitle({state, setState}: PostTitleProps) {
         }
 
 
-
+        console.log()
         return (
             <DropBox setDropBox={setState.isTitleDropBoxVisible}
                      enterHandler={() => null}
                      arrowUpHandler={arrowUpHandler}
                      arrowDownHandler={arrowDownHandler}
-                     title={<span className={styles.postTitle}>{state.seriesPosts[state.seriesOrder].title}</span>}>
-                {titleDropBoxItemDatas.map((v,i) => <TitleDropBoxItem key={v.slug} text={v.title} isFocused={i === state.index}/>)}
+                     title={
+                         <input
+                             className={styles.postTitle}
+                             readOnly={true}
+                             placeholder={"포스트 탐색하기"}
+                             value={state.seriesPosts[state.seriesOrder].title}/>}>
+                {
+                    titleDropBoxItemDatas.map((v, i) => <TitleDropBoxItem key={v.slug} text={v.title} isFocused={i === state.index}/>)
+                }
                 <TitleDropBoxItem text={text} isFocused={titleDropBoxItemDatas.length === state.index}/>
             </DropBox>
         )
     }
+
+    const directoryId = state.seriesPosts[state.seriesOrder].directoryId
+    useEffect(() => {
+        setTitleDropBoxItemDatas([])
+        setPageNum(1)
+    }, [directoryId]);
 
     return (
         <div className={styles.postTitleBox}
              style={{zIndex: state.isTitleDropBoxVisible ? "1" : "0"}}>
             <input
                 className={styles.postTitle}
+                readOnly={true}
                 placeholder={"포스트 탐색하기"}
                 value={state.seriesPosts[state.seriesOrder].title}
                 onClick={e => {

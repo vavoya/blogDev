@@ -1,14 +1,14 @@
 import {Directories} from "@/types/directories.interface";
-import {SeriesPost} from "@/services/seriesPosts/interface";
 import {useCallback, useEffect, useRef} from "react";
 import DropBox from "@/app/dashboard/common/DropBox";
 import styles from "@/app/dashboard/series/SeriesPostList/SeriesPostList.module.css";
 import getDirectoryTree from "@/utils/directoryTree";
+import {SeriesPostWithKey} from "@/app/dashboard/series/Series";
 
 interface PostPathProps {
     state: {
         directories: Directories,
-        seriesPosts: SeriesPost[],
+        seriesPosts: SeriesPostWithKey[],
         isPathDropBoxVisible: boolean,
         seriesOrder: number
         index: number
@@ -16,7 +16,7 @@ interface PostPathProps {
     setState: {
         isPathDropBoxVisible: (isDropBoxVisible: boolean) => void
         index: (index: number) => void
-        seriesPosts: (seriesPosts: SeriesPost[]) => void
+        seriesPosts: (seriesPosts: SeriesPostWithKey[]) => void
     }
 }
 
@@ -29,12 +29,13 @@ export default function PostPath({state, setState}: PostPathProps) {
     const pathDropBoxItemData = useRef<PathDropBoxItemData[]>([])
 
 
-    const enterHandler = useCallback(() => {
-        const newSeriesPost: SeriesPost = {
-            directoryId: pathDropBoxItemData.current[state.index].directoryId,
+    const enterHandler = useCallback((index?: number) => {
+        const newSeriesPost: SeriesPostWithKey = {
+            directoryId: pathDropBoxItemData.current[index ?? state.index].directoryId,
             title: "",
             slug: "",
-            seriesOrder: state.seriesOrder
+            seriesOrder: state.seriesPosts[state.seriesOrder].seriesOrder,
+            key: state.seriesPosts[state.seriesOrder].key
         }
         const newSeriesPosts = [...state.seriesPosts]
         newSeriesPosts.splice(state.seriesOrder, 1, newSeriesPost)
@@ -85,8 +86,18 @@ export default function PostPath({state, setState}: PostPathProps) {
                 enterHandler={enterHandler}
                 arrowUpHandler={arrowUpHandler}
                 arrowDownHandler={arrowDownHandler}
-                title={<span className={styles.postPath}>{getDirectoryTree({directories: state.directories, directoryId: state.seriesPosts[state.seriesOrder].directoryId}).path}</span>}>
-                {pathDropBoxItemData.current.map((v, i) => <PathDropBoxItem key={v.directoryId} text={v.text} isFocused={i === state.index}/>)}
+                title={
+                <input
+                    className={styles.postPath}
+                    placeholder={"폴더 탐색하기"}
+                    value={getDirectoryTree({directories: state.directories, directoryId: state.seriesPosts[state.seriesOrder].directoryId}).path}
+                    readOnly={true}/>}>
+                {pathDropBoxItemData.current.map((v, i) =>
+                    <PathDropBoxItem key={v.directoryId} text={v.text} isFocused={i === state.index}
+                                     onClick={() => {
+                                         enterHandler(i)
+                                     }}/>
+                )}
             </DropBox>
         )
     }
@@ -96,6 +107,7 @@ export default function PostPath({state, setState}: PostPathProps) {
         <div className={styles.postPathBox}
              style={{zIndex: state.isPathDropBoxVisible ? "1" : "0"}}>
             <input className={styles.postPath}
+                   readOnly={true}
                    placeholder={"폴더 탐색하기"}
                    value={getDirectoryTree({directories: state.directories, directoryId: state.seriesPosts[state.seriesOrder].directoryId}).path}
                    onClick={e => {
@@ -108,10 +120,11 @@ export default function PostPath({state, setState}: PostPathProps) {
 }
 
 
-function PathDropBoxItem({text, isFocused}: { text: string, isFocused?: boolean }) {
+function PathDropBoxItem({text, isFocused, onClick}: { text: string, isFocused?: boolean, onClick: () => void}) {
 
     return (
-        <button className={`${styles.dropBoxButton}${isFocused ? " " + styles.dropBoxButtonFocus : ""}`}>
+        <button className={`${styles.dropBoxButton}${isFocused ? " " + styles.dropBoxButtonFocus : ""}`}
+                onClick={onClick}>
                 <span className={styles.postPath}>
                     {text}
                 </span>

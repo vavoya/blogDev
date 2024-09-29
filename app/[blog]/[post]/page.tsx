@@ -12,7 +12,7 @@ import {UserInfoDocument} from "@/types/userInfo.interface";
 import {PostDocument} from "@/types/posts.interface";
 import ServerErrorPage from "@/app/_error/ServerErrorPage";
 import NotFoundPage from "@/app/_error/NotFoundPage";
-import Header from "@/components/header/Header";
+import DefaultHeader from "@/components/header/DefaultHeader";
 
 export default async function Page({params}: {params: {blog: string, post: string}}) {
     // blogSlug는 앞선 layout.tsx에서 이미 검증됨.
@@ -38,7 +38,7 @@ export default async function Page({params}: {params: {blog: string, post: strin
 
     return (
         <>
-            <Header blogSlug={blogSlug} blogName={blogName}/>
+            <DefaultHeader blogSlug={blogSlug} blogName={blogName}/>
             <SideBar slugs={{blogSlug, postSlug}} userId={userId}/>
             <main style={{
                 width: "800px",

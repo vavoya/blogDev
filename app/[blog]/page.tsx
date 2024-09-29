@@ -5,7 +5,7 @@ import SideBar from "@/components/sideBar/SideBar";
 import React from "react";
 import {fetchUserInfoBySlug} from "@/fetcher/server/GET/userInfoFetcher";
 import NotFoundPage from "@/app/_error/NotFoundPage";
-import Header from "@/components/header/Header";
+import DefaultHeader from "@/components/header/DefaultHeader";
 import {FetchResult} from "@/fetcher/FetchResult";
 import {FeaturedPostDocument} from "@/types/featuredPosts.interface";
 import {fetchFeaturedPost} from "@/fetcher/server/GET/featuredPostFetcher";
@@ -34,7 +34,7 @@ export default async function Page({params}: {params: {blog: string}}) {
 
     return (
         <>
-            <Header blogSlug={blogSlug} blogName={blogName}/>
+            <DefaultHeader blogSlug={blogSlug} blogName={blogName}/>
             <SideBar slugs={{blogSlug}} userId={userId}/>
             <main style={{
                 width: "800px",

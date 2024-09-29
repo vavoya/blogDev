@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PaginatedPostsWithCount } from "@/services/paginatedPosts/forSeries/interface";
+import {PaginatedPosts} from "@/services/paginatedPosts/forSeries/interface";
 import {getByUserIdAndDirectoryIdAndPageNum} from "@/services/paginatedPosts/forSeries/getByUserIdAndDirectoryIdsAndPageNum";
 
 export async function GET(request: NextRequest) {
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
 
     // db쿼리 시작
     try {
-        const paginatedPosts: PaginatedPostsWithCount | null = await getByUserIdAndDirectoryIdAndPageNum({ userId, directoryId, pageNum });
+        const paginatedPosts: PaginatedPosts | null = await getByUserIdAndDirectoryIdAndPageNum({ userId, directoryId, pageNum });
         return NextResponse.json(
             { data: paginatedPosts },
             {

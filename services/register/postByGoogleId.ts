@@ -19,8 +19,8 @@ interface PostByGoogleIdProps {
 * @param {string} slug - 블로그 주소
 * @param {string} introduce - 유저 한 줄 소개
 * @returns {number} - 작업 결과를 나타내는 정수 값
-*   0: 에러 발생
-*   1: 정상 처리 완료
+*   0: 정상 처리 완료
+*   1: 에러 발생
 *   2: googleId가 이미 존재함
 *   3: 사용자 이름(name)이 이미 존재함
 *   4: 블로그 이름(blogName)이 이미 존재함
@@ -142,11 +142,13 @@ export async function postByGoogleId({
 
         await session.commitTransaction();
         console.log("Transaction successfully committed.");
-        return 1;
-    } catch (error) {
-        await session.abortTransaction();
-        console.error("Transaction aborted due to an error: ", error);
         return 0;
+    } catch (error) {
+        if (session.inTransaction()) {
+            await session.abortTransaction(); // 트랜잭션 중단
+        }
+        console.error("Transaction aborted due to an error: ", error);
+        return 1;
     } finally {
         await session.endSession();
     }

@@ -6,7 +6,7 @@ import {SeriesObject} from "@/types/series.interface";
 import AccessDeniedPage from "@/app/_error/AccessDeniedPage";
 import React from "react";
 import ServerErrorPage from "@/app/_error/ServerErrorPage";
-import Header from "@/components/header/Header";
+import DefaultHeader from "@/components/header/DefaultHeader";
 import DashboardSideBar from "@/components/sideBar/DashboardSideBar";
 import {Directories} from "@/types/directories.interface";
 import {fetchDirectories} from "@/fetcher/server/GET/directoryFetcher";
@@ -35,7 +35,7 @@ export default async function Page() {
 
     return (
         <>
-            <Header slug1={"dashboard"} slug2={"series"}/>
+            <DefaultHeader slug1={"dashboard"} slug2={"series"}/>
             <DashboardSideBar slug={"series"}/>
             <Series data={data.data} directories={directories.data} userId={0}/>
         </>

@@ -18,14 +18,14 @@ export interface ModalProps {
     userId: number
     slugs: Slugs
     initPageNum: number
-    initSeriesId: number | null
+    initSeriesId: number
     data: SeriesObject
     directories: Directories
 }
 
 
 export default function Modal({isModalOpen, onClose, userId, slugs, initPageNum, initSeriesId, data, directories}: ModalProps) {
-    const [ stack, setStack ] = useState<number[]>(initSeriesId === null ? [] : [initSeriesId])
+    const [ stack, setStack ] = useState<number[]>(initSeriesId === -1 ? [] : [initSeriesId])
 
     useEffect(() => {
         // 모달이 열리고 닫히면 리렌더링 시키기 위해 상태 재설정

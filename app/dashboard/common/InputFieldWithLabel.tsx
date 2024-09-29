@@ -23,7 +23,7 @@ export default function InputFieldWithLabel({id, maxLength, labelText, errorText
                 key={id}
                 maxLength={maxLength}
                 defaultValue={value}
-                onChange={readOnly ? onChange : undefined}
+                onChange={readOnly ? undefined : onChange}
                 readOnly={readOnly}
                 placeholder={placeholder}/>
             {

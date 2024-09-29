@@ -69,6 +69,13 @@ input {
   color: inherit;
 }
 
+textarea {
+  all: unset; /* 모든 기본 스타일 제거 */
+}
+
+
+
+
 
 
 

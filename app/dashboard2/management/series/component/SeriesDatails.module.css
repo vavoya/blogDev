@@ -1,0 +1,68 @@
+
+
+.folderDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 400px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.folderDetailsTitle {
+    font-size: 1.25rem;
+    line-height: 1.5em;
+    font-weight: 500;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.folderDetailsInput {
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.actionButtons {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.actionButtons > button {
+    padding: 5px 10px;
+    transition: background-color 0.3s, border-radius 0.3s;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    line-height: 1.5em;
+    font-weight: 500;
+}
+
+.actionButtons > button:hover {
+    border-radius: 5px;
+    background-color: rgba(var(--primary-color), 0.1);
+}
+
+.dropBoxItem {
+    padding: 5px 10px;
+    font-size: 1rem;
+    line-height: 1.5em;
+    text-align: left;
+}
+
+.dropBoxItem:hover {
+    background-color: rgba(var(--primary-color), 0.1);
+}
+
+.addButton {
+    height: 40px;
+    transition: background-color 0.3s, border-radius 0.3s;
+}
+
+.addButton:hover {
+    border-radius: 5px;
+    background-color: rgba(var(--primary-color), 0.1);
+}

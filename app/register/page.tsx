@@ -153,8 +153,14 @@ export default function Page() {
                     })
                     fetchRegistration({props: state}).then(status => {
                         switch (status) {
-                            case 1:
+                            case 0:
                                 router.push(`/register/success?homeUrl=${state.blogSlug}&name=${state.name}`);
+                                break;
+                            case 1:
+                                setIsSubmitting({
+                                    state: 2,
+                                    text: "사용자 등록에 실패했습니다"
+                                });
                                 break;
                             case 2:
                                 setIsSubmitting({

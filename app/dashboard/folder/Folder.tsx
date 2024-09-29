@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 import getDirectoryTree from "@/utils/directoryTree";
 import ProcessingOverlay from "@/components/processingOverlay/ProcessingOverlay";
 import {ErrorState, checkInputErrors, folderErrorTexts} from "@/app/dashboard/common/checkInputErrors";
+import TreeItems from "@/app/dashboard/folder/TreeItems";
 
 // 모든 JSX 다시 계산하는거 인지
 // 글자 20 제한, 양쪽 공백 제한, 빈 이름 제한, 중복 제한
@@ -155,5 +156,33 @@ export default function Folder({data}: {data: Directories}) {
             <Layout treeElements={treeElements} detailsElements={detailsElements} />
             {/*<ProcessingOverlay text={"에러에러!!"} onClick={() => null}/>*/}
         </>
+    )
+
+
+
+    return (
+        <Layout
+            treeElements={[
+            <TreeItems
+                key={0}
+                state={{
+                    directories,
+                    currentDirectoryId,
+                    initMaxId,
+                    errorState
+                }}
+                setState={{
+                    directories: setDirectories,
+                    currentDirectoryId: setCurrentDirectoryId,
+                    errorState: setErrorState
+                }}/>
+            ]}
+            detailsElements={[
+                <InputFieldWithLabel
+                    key={'0'}
+                    labelText={"경로"}
+                    value={path}
+                    readOnly={true}/>,
+            ]}/>
     )
 }
